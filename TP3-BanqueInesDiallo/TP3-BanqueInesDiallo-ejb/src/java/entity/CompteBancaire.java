@@ -90,6 +90,8 @@ public class CompteBancaire implements Serializable {
     public String toString() {
         return "entity.CompteBancaire[ id=" + id + " ]";
     }
+
+    
     
     
  
