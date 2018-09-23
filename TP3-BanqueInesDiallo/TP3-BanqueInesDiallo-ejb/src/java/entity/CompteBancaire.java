@@ -91,8 +91,5 @@ public class CompteBancaire implements Serializable {
         return "entity.CompteBancaire[ id=" + id + " ]";
     }
 
-    
-    
-    
  
 }

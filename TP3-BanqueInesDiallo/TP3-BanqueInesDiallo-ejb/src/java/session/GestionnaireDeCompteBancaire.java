@@ -74,6 +74,17 @@ public class GestionnaireDeCompteBancaire {
     public void creerCompte(CompteBancaire c) {
         em.persist(c);
     }
+    
+     public CompteBancaire creerCompte(String nom, int solde){
+        CompteBancaire compte = new CompteBancaire(solde);
+        persist(compte);
+    
+        return compte;
+    }
+
+    
+    
+    
       public CompteBancaire updateCompte(CompteBancaire c) {
          return  em.merge(c);
     }
