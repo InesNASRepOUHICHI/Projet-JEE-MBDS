@@ -34,6 +34,10 @@ public class CompteBancaire implements Serializable {
     private String nom;
     private int solde;
 
+    public CompteBancaire(int solde) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public String getNom() {
         return nom;
     }
@@ -90,7 +94,6 @@ public class CompteBancaire implements Serializable {
     public String toString() {
         return "entity.CompteBancaire[ id=" + id + " ]";
     }
-    
-    
+
  
 }
