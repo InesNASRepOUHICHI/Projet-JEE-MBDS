@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>  
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">    
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"  
+                xmlns:h="http://java.sun.com/jsf/html" 
+                 xmlns:p="http://primefaces.org/ui"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./template_default.xhtml"> 
+   
+        <ui:define name="complementTitreEtH1">ListComptes_</ui:define>  
+  
+    <ui:define name="content"> 
+
+
+            <h:form>
+                <h1><h:outputText value="List"/></h1>
+                <p:dataTable value="#{compteMBean.comptes}" var="item"  emptyMessage="No compte found with given criteria"   
+                             widgetVar="compteTable"  
+                             paginator="true"  
+                             rows="10">
+
+                    <f:facet name="header">    
+                        <p:outputPanel>    
+                            <h:outputText value="Search all fields:" />    
+                            <p:inputText id="globalFilter" onkeyup="compteTable.filter()" style="width:150px" />    
+                        </p:outputPanel>    
+                    </f:facet>    
+
+                    <p:column headerText="CompteId"  
+                              sortBy="#{item.id}"  
+                              filterBy="#{item.id}"  
+                              filterMatchMode="contains"> 
+                        
+                        <h:link outcome="#{compteMBean.showDetails(item.id)}" value="#{item.id}"/>    
+                 
+                        </p:column>  
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nom"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nom}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Solde"/>
+                        </f:facet>
+                        <h:outputText value="#{item.solde}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+      </ui:define>  
+  
+</ui:composition> 
+
