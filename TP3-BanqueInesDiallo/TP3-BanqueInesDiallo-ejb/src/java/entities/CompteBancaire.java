@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entity;
+package entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -20,10 +20,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author INES NASR
  */
 @Entity 
+@Table(name = "COMPTEBANCAIRE")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name="CompteBancaire.findAll",query="SELECT c FROM CompteBancaire c ORDER BY c.id"),
-    @NamedQuery(name="CompteBancaire.findById",query="SELECT c FROM CompteBancaire c WHERE c.id=: id"),
+    @NamedQuery(name = "CompteBancaire.findByName", query = "SELECT c FROM CompteBancaire c WHERE c.nom = :nom"),
+    @NamedQuery(name="CompteBancaire.findById",query="SELECT c FROM CompteBancaire c WHERE c.id = :id"),
     @NamedQuery(name="CompteBancaire.nbComptes",query="SELECT COUNT(c) FROM CompteBancaire c")})
 public class CompteBancaire implements Serializable {
 
