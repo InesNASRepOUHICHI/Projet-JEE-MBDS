@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entities;
+package edu.unice.banque.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "CompteBancaire.findByName", query = "SELECT c FROM CompteBancaire c WHERE c.nom = :nom"),
     @NamedQuery(name="CompteBancaire.findById",query="SELECT c FROM CompteBancaire c WHERE c.id = :id"),
     @NamedQuery(name="CompteBancaire.nbComptes",query="SELECT COUNT(c) FROM CompteBancaire c")})
-public class CompteBancaire implements Serializable {
+public class OldCompteBancaire implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -36,7 +36,7 @@ public class CompteBancaire implements Serializable {
     private String nom;
     private int solde;
 
-    public CompteBancaire(int solde) {
+    public OldCompteBancaire(int solde) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -56,10 +56,10 @@ public class CompteBancaire implements Serializable {
         this.solde = solde;
     }
 
-    public CompteBancaire() {
+    public OldCompteBancaire() {
     }
 
-    public CompteBancaire(String nom, int solde) {
+    public OldCompteBancaire(String nom, int solde) {
         this.nom = nom;
         this.solde = solde;
     }
@@ -82,10 +82,10 @@ public class CompteBancaire implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CompteBancaire)) {
+        if (!(object instanceof OldCompteBancaire)) {
             return false;
         }
-        CompteBancaire other = (CompteBancaire) object;
+        OldCompteBancaire other = (OldCompteBancaire) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

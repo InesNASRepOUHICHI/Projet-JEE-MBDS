@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package session;
+package edu.unice.banque.session;
 
-import entities.CompteBancaire;
+import edu.unice.banque.entities.OldCompteBancaire;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -27,16 +27,16 @@ public class GestionnaireDeCompteBancaire {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    private CompteBancaire compteBancaire;
+    private OldCompteBancaire compteBancaire;
 
-    public  CompteBancaire deposer(CompteBancaire compte,int montant) {
+    public  OldCompteBancaire deposer(OldCompteBancaire compte,int montant) {
      compteBancaire.setSolde(compteBancaire.getSolde() + montant);
         em.merge(compte);
         return update (compte);
 
     }
 
-    public CompteBancaire retirer(CompteBancaire compte,int montant) {
+    public OldCompteBancaire retirer(OldCompteBancaire compte,int montant) {
         if (montant < compteBancaire.getSolde()) {
             compteBancaire.setSolde(compteBancaire.getSolde() - montant);
               em.merge(compte);
@@ -51,14 +51,14 @@ public String showDetails(int compteId) {
         return "CustomerDetails?idCompte=" + compteId;  
     }  
 
-    public CompteBancaire getCompte(int idCompte) {
-        return em.find(CompteBancaire.class, idCompte);  
+    public OldCompteBancaire getCompte(int idCompte) {
+        return em.find(OldCompteBancaire.class, idCompte);  
 
     }
    public void transfertArgent(Long idDebiteur,Long idCrediteur, int montant){
         
-        CompteBancaire compteDebiteur = chercherCompteById(idDebiteur);
-        CompteBancaire compteCrediteur= chercherCompteById(idCrediteur);
+        OldCompteBancaire compteDebiteur = chercherCompteById(idDebiteur);
+        OldCompteBancaire compteCrediteur= chercherCompteById(idCrediteur);
         
        retirer(compteDebiteur,montant);
        deposer(compteCrediteur,montant);
@@ -70,8 +70,8 @@ public String showDetails(int compteId) {
     
   
     
-     public CompteBancaire consulter(long id) {   
-        return em.find(CompteBancaire.class, id);
+     public OldCompteBancaire consulter(long id) {   
+        return em.find(OldCompteBancaire.class, id);
     }
 
 
@@ -81,24 +81,24 @@ public String showDetails(int compteId) {
 
    
     
-     public CompteBancaire creerCompte(String nom, int solde){
-        CompteBancaire compte = new CompteBancaire(nom,solde);
+     public OldCompteBancaire creerCompte(String nom, int solde){
+        OldCompteBancaire compte = new OldCompteBancaire(nom,solde);
        em.persist(compte);
        return compte;
     }
 
     
-      public CompteBancaire update(CompteBancaire compte) {
+      public OldCompteBancaire update(OldCompteBancaire compte) {
       return em.merge(compte); 
     }
       
-    public List<CompteBancaire> getAllComptes() {
-       Query query = em.createNamedQuery("CompteBancaire.findAll");  
+    public List<OldCompteBancaire> getAllComptes() {
+       Query query = em.createNamedQuery("OldCompteBancaire.findAll");  
         return query.getResultList(); 
     }
     
-    public List<CompteBancaire> getComptes(int start, int nombreDeComptes){
-    Query query=em.createNamedQuery("CompteBancaire.findAll");
+    public List<OldCompteBancaire> getComptes(int start, int nombreDeComptes){
+    Query query=em.createNamedQuery("OldCompteBancaire.findAll");
     query.setFirstResult(start);
     query.setMaxResults(nombreDeComptes);
     
@@ -106,12 +106,12 @@ public String showDetails(int compteId) {
     }
     
     
-    public void delete(CompteBancaire c){
+    public void delete(OldCompteBancaire c){
     em.remove(c);    }
     
-    public CompteBancaire chercherCompteById(Long id){
-    Query query=em.createNamedQuery("CompteBancaire.findById").setParameter("id",id);
-    return(CompteBancaire)query.getSingleResult();
+    public OldCompteBancaire chercherCompteById(Long id){
+    Query query=em.createNamedQuery("OldCompteBancaire.findById").setParameter("id",id);
+    return(OldCompteBancaire)query.getSingleResult();
     }
    
   
