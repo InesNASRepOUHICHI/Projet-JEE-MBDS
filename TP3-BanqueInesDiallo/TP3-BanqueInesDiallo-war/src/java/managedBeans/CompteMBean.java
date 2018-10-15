@@ -12,7 +12,6 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 
 import javax.faces.view.ViewScoped;
-import javax.persistence.EntityManager;
 import edu.unice.banque.session.GestionnaireDeCompteBancaire;
 
 /**

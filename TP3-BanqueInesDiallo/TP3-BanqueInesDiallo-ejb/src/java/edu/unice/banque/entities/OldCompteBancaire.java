@@ -23,10 +23,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "COMPTEBANCAIRE")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name="CompteBancaire.findAll",query="SELECT c FROM CompteBancaire c ORDER BY c.id"),
-    @NamedQuery(name = "CompteBancaire.findByName", query = "SELECT c FROM CompteBancaire c WHERE c.nom = :nom"),
-    @NamedQuery(name="CompteBancaire.findById",query="SELECT c FROM CompteBancaire c WHERE c.id = :id"),
-    @NamedQuery(name="CompteBancaire.nbComptes",query="SELECT COUNT(c) FROM CompteBancaire c")})
+    @NamedQuery(name="CompteBancaire.findAll",query="SELECT c FROM Compte c ORDER BY c.numero"),
+    @NamedQuery(name="CompteBancaire.findByNumero",query="SELECT c FROM Compte c WHERE c.numero = :numero"),
+    @NamedQuery(name="CompteBancaire.nbComptes",query="SELECT COUNT(c) FROM Compte c")})
 public class OldCompteBancaire implements Serializable {
 
     private static final long serialVersionUID = 1L;
