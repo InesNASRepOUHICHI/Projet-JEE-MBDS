@@ -14,6 +14,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 
 
@@ -21,7 +23,7 @@ import javax.persistence.ManyToMany;
  *
  * @author INES NASR
  */
-@Entity
+@Entity  
 public class Compte implements Serializable {
 
     private static final long serialVersionUID = 1L;
