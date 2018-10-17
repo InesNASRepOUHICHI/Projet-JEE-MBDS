@@ -5,12 +5,12 @@
  */
 package managedBeans;
 
-import entities.CompteBancaire;
+import edu.unice.banque.entities.OldCompteBancaire;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
-import session.GestionnaireDeCompteBancaire;
+import edu.unice.banque.session.GestionnaireDeCompteBancaire;
 
 /**
  *
@@ -23,13 +23,13 @@ public class CompteDetailsMBean implements Serializable{
     @EJB
     private GestionnaireDeCompteBancaire gestionnaireDeCompteBancaire;
  private int id;  
-  private CompteBancaire compte; 
+  private OldCompteBancaire compte; 
     /**
      * Creates a new instance of CompteDetailsMBean
      */
   
   
-   public CompteBancaire getDetails() {  
+   public OldCompteBancaire getDetails() {  
     return compte;  
   }  
   

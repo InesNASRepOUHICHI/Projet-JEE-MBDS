@@ -5,15 +5,14 @@
  */
 package managedBeans;
 
-import entities.CompteBancaire;
+import edu.unice.banque.entities.OldCompteBancaire;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 
 import javax.faces.view.ViewScoped;
-import javax.persistence.EntityManager;
-import session.GestionnaireDeCompteBancaire;
+import edu.unice.banque.session.GestionnaireDeCompteBancaire;
 
 /**
  *
@@ -31,7 +30,7 @@ public class CompteMBean implements Serializable {
     @EJB
     private GestionnaireDeCompteBancaire compteManager;
 
-    private CompteBancaire compte;
+    private OldCompteBancaire compte;
 
     private int montant = 0;
 
@@ -42,7 +41,7 @@ public class CompteMBean implements Serializable {
    
           
     }
-     public List<CompteBancaire> getComptes() {  
+     public List<OldCompteBancaire> getComptes() {  
     return compteManager.getAllComptes();
     }  
     public void creerComptesTest(){
@@ -50,7 +49,7 @@ public class CompteMBean implements Serializable {
     }
   
 
-public String showDetails(CompteBancaire compte) {  
+public String showDetails(OldCompteBancaire compte) {  
         this.compte = compte;  
         return "détailCompte?faces-redirect=true";  
     }  
@@ -75,11 +74,11 @@ public String ajouterMontant(){
 public String showDetails(long compteId) {  
         return "CompteDetails?id=" + compteId;}   
 
-    public CompteBancaire getCompte() {
+    public OldCompteBancaire getCompte() {
         return compte;
     }
 
-    public void setCompte(CompteBancaire compte) {
+    public void setCompte(OldCompteBancaire compte) {
         this.compte = compte;
     }
 
