@@ -29,7 +29,7 @@ public class ClientMBean implements Serializable {
      * Creates a new instance of ClientMBean
      */
      public List<Client> getClients() {  
-    return clientManager.getAllClient();
+         return clientManager.getAllClient();
     }  
      public String addClient(){
          clientManager.addClient(client);

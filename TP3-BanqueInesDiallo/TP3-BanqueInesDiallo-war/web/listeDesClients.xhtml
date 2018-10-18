@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Liste des clients </title>
+    </h:head>
+    <h:body>
+        
+      <ui:composition template="./WEB-INF/template/template.xhtml">
+        <ui:define name="complementTitreEtH1">Liste Des Clients</ui:define>  
+  
+    <ui:define name="content"> 
+   
+        <f:view>
+            <h:form>
+                <h1><h:outputText value="List des clients "/></h1>
+                <p:dataTable value="#{clientMBean.clients}" var="item"  paginator="true"  rows="5" >
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nom"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nom}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Prenom"/>
+                        </f:facet>
+                        <h:outputText value="#{item.prenom}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="NumeroTelephone"/>
+                        </f:facet>
+                        <h:outputText value="#{item.numeroTelephone}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Adresse"/>
+                        </f:facet>
+                        <h:outputText value="#{item.adresse}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Sexe"/>
+                        </f:facet>
+                        <h:outputText value="#{item.sexe}"/>
+                    </p:column>
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="Email"/>
+                        </f:facet>
+                        <h:outputText value="#{item.email}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Password"/>
+                        </f:facet>
+                        <h:outputText value="#{item.password}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Role"/>
+                        </f:facet>
+                        <h:outputText value="#{item.role}"/>
+                    </p:column>
+                </p:dataTable>  
+            </h:form>
+        </f:view>
+</ui:define>  
+               </ui:composition>
+    </h:body>
+</html>
+

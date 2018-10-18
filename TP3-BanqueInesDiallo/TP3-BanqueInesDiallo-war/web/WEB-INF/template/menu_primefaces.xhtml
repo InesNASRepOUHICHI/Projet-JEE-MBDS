@@ -9,7 +9,7 @@
 
   <h:form>
     <p:panelMenu style="width:150px;">
-          <p:submenu label="Acceuil" >
+        <p:submenu label="Acceuil" >
         <p:menuitem outcome="/index" value="Accueil"/>
       </p:submenu>
       
@@ -18,7 +18,11 @@
         <p:menuitem 
           url="/faces/Compte.xhtml" 
           value="Créaction d'un nouveau compte "/>
-      </p:submenu>   </p:panelMenu>
+      </p:submenu> 
+        <p:submenu label = "Gestion des clients">
+            <p:menuitem outcome="/listeDesClients" value ="Liste des Clients"/>
+        </p:submenu>
+    </p:panelMenu>
   </h:form>
 
 </ui:composition>
