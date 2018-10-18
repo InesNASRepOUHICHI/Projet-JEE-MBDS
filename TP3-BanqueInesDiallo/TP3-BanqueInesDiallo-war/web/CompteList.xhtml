@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' ?>  
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">    
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+ <html xmlns="http://www.w3.org/1999/xhtml"  
                 xmlns:ui="http://java.sun.com/jsf/facelets"  
                 xmlns:h="http://java.sun.com/jsf/html" 
                  xmlns:p="http://primefaces.org/ui"
                  xmlns:f="http://xmlns.jcp.org/jsf/core"
                 template="./template_default.xhtml"> 
-   
-        <ui:define name="complementTitreEtH1">ListComptes_</ui:define>  
+    <body>
+          <ui:composition template="./WEB-INF/template/template.xhtml">
+               <ui:define name="complementTitreEtH1">ListComptes</ui:define>  
   
     <ui:define name="content"> 
 
@@ -27,19 +28,14 @@
                     </f:facet>    
 
                     <p:column headerText="CompteId"  
-                              sortBy="#{item.id}"  
-                              filterBy="#{item.id}"  
+                              sortBy="#{item.numero}"  
+                              filterBy="#{item.numero}"  
                               filterMatchMode="contains"> 
                         
-                        <h:link outcome="#{compteMBean.showDetails(item.id)}" value="#{item.id}"/>    
+                        <h:link outcome="#{compteMBean.showDetails(item.numero)}" value="#{item.numero}"/>    
                  
                         </p:column>  
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nom"/>
-                        </f:facet>
-                        <h:outputText value="#{item.nom}"/>
-                    </p:column>
+                 
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="Solde"/>
@@ -49,6 +45,8 @@
                 </p:dataTable>
             </h:form>
       </ui:define>  
-  
-</ui:composition> 
+               </ui:composition>
+    </body>
+       
+</html> 
 

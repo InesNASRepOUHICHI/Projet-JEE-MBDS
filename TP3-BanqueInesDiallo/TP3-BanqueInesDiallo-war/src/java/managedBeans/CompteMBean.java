@@ -5,14 +5,14 @@
  */
 package managedBeans;
 
-import edu.unice.banque.entities.OldCompteBancaire;
+import edu.unice.banque.entities.Compte;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 
 import javax.faces.view.ViewScoped;
-import edu.unice.banque.session.GestionnaireDeCompteBancaire;
+import edu.unice.banque.session.GestionnaireDeCompte;
 
 /**
  *
@@ -28,28 +28,24 @@ public class CompteMBean implements Serializable {
      * Creates a new instance of CompteMBean
      */
     @EJB
-    private GestionnaireDeCompteBancaire compteManager;
+    private GestionnaireDeCompte compteManager;
 
-    private OldCompteBancaire compte;
+    private Compte compte;
 
     private int montant = 0;
-
-  
-
-
-    public CompteMBean() {
+    
+   public CompteMBean() {
    
           
     }
-     public List<OldCompteBancaire> getComptes() {  
+     public List<Compte> getComptes() {  
     return compteManager.getAllComptes();
     }  
-    public void creerComptesTest(){
-        compteManager.creerComptesTest();
-    }
-  
+     
+   
+ 
 
-public String showDetails(OldCompteBancaire compte) {  
+public String showDetails(Compte compte) {  
         this.compte = compte;  
         return "détailCompte?faces-redirect=true";  
     }  
@@ -62,7 +58,7 @@ public String ajouterMontant(){
         compteManager.retirer(compte, montant);
         return "Monrtant retiré";
     }
- public void suppress(){
+ public void suppression(){
          compteManager.delete(this.compte);
      }
  
@@ -74,11 +70,11 @@ public String ajouterMontant(){
 public String showDetails(long compteId) {  
         return "CompteDetails?id=" + compteId;}   
 
-    public OldCompteBancaire getCompte() {
+    public Compte getCompte() {
         return compte;
     }
 
-    public void setCompte(OldCompteBancaire compte) {
+    public void setCompte(Compte compte) {
         this.compte = compte;
     }
 

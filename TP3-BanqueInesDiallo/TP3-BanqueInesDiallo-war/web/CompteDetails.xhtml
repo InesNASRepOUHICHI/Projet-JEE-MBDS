@@ -20,10 +20,8 @@
                 <h1><h:outputText value="Create/Edit"/></h1>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="CompteId:" for="id" />
-                    <h:inputText id="id" value="#{compteDetailsMBean.details.id}" title="CompteId" required="true" requiredMessage="The CompteId field is required."/>
-                    <h:outputLabel value="Nom:" for="nom" />
-                    <h:inputText id="nom" value="#{compteDetailsMBean.details.nom}" title="Nom" />
-                    <h:outputLabel value="Solde:" for="solde" />
+                    <h:inputText id="id" value="#{compteDetailsMBean.details.numero}" title="CompteId" required="true" requiredMessage="The CompteId field is required."/>
+                      <h:outputLabel value="Solde:" for="solde" />
                     <h:inputText id="solde" value="#{compteDetailsMBean.details.solde}" title="solde" />
                 </h:panelGrid>
                  <h:commandButton id="update" value="Update" action="#{compteDetailsMBean.update()}"/>  

@@ -26,7 +26,7 @@ public class CompteEpargne extends  Compte implements Serializable {
     }
 
     public CompteEpargne(Long numero, double solde, List<Client> listeClientsProprietaires,double taux,double maxEpargne,double minEpargne) {
-        super(numero, solde, listeClientsProprietaires);
+        super(numero, solde);
         this.taux = taux;
         this.maxEpargne = maxEpargne;
         this.minEpargne = minEpargne;

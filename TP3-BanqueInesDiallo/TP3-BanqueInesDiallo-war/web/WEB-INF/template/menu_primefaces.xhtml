@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:p="http://primefaces.org/ui">
+
+  <h:form>
+    <p:panelMenu style="width:150px;">
+          <p:submenu label="Acceuil" >
+        <p:menuitem outcome="/index" value="Accueil"/>
+      </p:submenu>
+      
+      <p:submenu label="Liste des comptes bancaires" >
+        <p:menuitem outcome="/CompteList" value="Liste des comptes"/>
+        <p:menuitem 
+          url="/faces/Compte.xhtml" 
+          value="Créaction d'un nouveau compte "/>
+      </p:submenu>   </p:panelMenu>
+  </h:form>
+
+</ui:composition>
+
