@@ -16,33 +16,48 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 /**
  *
  * @author INES NASR
  */
-@Entity  
+@Entity  @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS) 
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name="Compte.findAll",query="SELECT c FROM Compte c ORDER BY c.numero"),
+    @NamedQuery(name="Compte.findByNumero",query="SELECT c FROM Compte c WHERE c.numero = :numero"),
+    @NamedQuery(name="Compte.nbComptes",query="SELECT COUNT(c) FROM Compte c")})
+
 public class Compte implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long numero;
     private double solde;
     
-    @ManyToMany(cascade={CascadeType.ALL}, fetch= FetchType.EAGER)
+    @ManyToMany(cascade={CascadeType.PERSIST}, fetch= FetchType.EAGER)
     private List<Client> listeClientsProprietaires;
 
     public Compte() {
     }
 
-    public Compte(Long numero, double solde, List<Client> listeClientsProprietaires) {
-        this.numero = numero;
-        this.solde = solde;
-        this.listeClientsProprietaires = listeClientsProprietaires;
+  
+
+    public Compte(Long num, double solde) {
+       this.numero=num;
+       this.solde=solde;
     }
+    
+    
+    
+    
 
     public Long getNumero() {
         return numero;
@@ -68,14 +83,21 @@ public class Compte implements Serializable {
         this.listeClientsProprietaires = listeClientsProprietaires;
     }
 
+    public Compte(Long numero, double solde, List<Client> listeClientsProprietaires) {
+        this.numero = numero;
+        this.solde = solde;
+        this.listeClientsProprietaires = listeClientsProprietaires;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.numero);
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.solde) ^ (Double.doubleToLongBits(this.solde) >>> 32));
-        hash = 97 * hash + Objects.hashCode(this.listeClientsProprietaires);
+        hash = 79 * hash + Objects.hashCode(this.numero);
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.solde) ^ (Double.doubleToLongBits(this.solde) >>> 32));
         return hash;
     }
+
+ 
 
     @Override
     public boolean equals(Object obj) {

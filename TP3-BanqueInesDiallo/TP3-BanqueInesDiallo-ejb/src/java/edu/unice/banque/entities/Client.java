@@ -23,7 +23,7 @@ import javax.persistence.OneToMany;
 public class Client extends Personnee implements Serializable  {
     private boolean estCoProprietaire;
     
-    @ManyToMany 
+    @ManyToMany
     private List<Compte> listComptes;
     
     @ManyToOne(cascade={CascadeType.ALL}, fetch= FetchType.EAGER)

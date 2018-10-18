@@ -25,7 +25,7 @@ public class CompteCourant extends Compte implements Serializable {
     }
 
     public CompteCourant(Long numero, double solde, List<Client> listeClientsProprietaires,double pret,double montantDecouvert) {
-        super(numero, solde, listeClientsProprietaires);
+        super(numero, solde);
         this.montantPret = pret;
         this.montantDecouvert = montantDecouvert;
     }
