@@ -28,12 +28,12 @@ public class Administrateur extends Personnee implements Serializable {
         this.listeConseillers = listeConseillers;
     }
 
-    public Administrateur(List<Conseiller> listeConseillers, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, String role) {
+    public Administrateur(List<Conseiller> listeConseillers, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
         super(nom, prenom, numeroTelephone, adresse, sexe, email, password, role);
         this.listeConseillers = listeConseillers;
     }
 
-    public Administrateur(List<Conseiller> listeConseillers, Long id, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, String role) {
+    public Administrateur(List<Conseiller> listeConseillers, Long id, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
         super(id, nom, prenom, numeroTelephone, adresse, sexe, email, password, role);
         this.listeConseillers = listeConseillers;
     }

@@ -34,13 +34,13 @@ public class Conseiller extends Personnee implements Serializable {
         this.administrateur = administrateur;
     }
 
-    public Conseiller(List<Client> listeClients, Administrateur administrateur, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, String role) {
+    public Conseiller(List<Client> listeClients, Administrateur administrateur, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
         super(nom, prenom, numeroTelephone, adresse, sexe, email, password, role);
         this.listeClients = listeClients;
         this.administrateur = administrateur;
     }
 
-    public Conseiller(List<Client> listeClients, Administrateur administrateur, Long id, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, String role) {
+    public Conseiller(List<Client> listeClients, Administrateur administrateur, Long id, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
         super(id, nom, prenom, numeroTelephone, adresse, sexe, email, password, role);
         this.listeClients = listeClients;
         this.administrateur = administrateur;

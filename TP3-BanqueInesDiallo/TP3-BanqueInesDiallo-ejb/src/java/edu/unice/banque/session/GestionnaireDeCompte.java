@@ -5,6 +5,7 @@
  */
 package edu.unice.banque.session;
 
+
 import edu.unice.banque.entities.Client;
 import edu.unice.banque.entities.Compte;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -26,7 +28,7 @@ public class GestionnaireDeCompte {
     @PersistenceContext(unitName = "TP3-BanqueInesDiallo-ejbPU")
     private EntityManager em;
   
-   private final Compte compteBancaire = new Compte();
+   private  Compte compteBancaire;
    
     public  Compte deposer(Compte compte,int montant) {
      compteBancaire.setSolde(compteBancaire.getSolde() + montant);
@@ -46,11 +48,11 @@ public class GestionnaireDeCompte {
         }
 
     }
-   public String showDetails(int compteId) {  
+    public String showDetails(Long compteId) {  
         return "CustomerDetails?idCompte=" + compteId;  
     }  
 
-    public Compte getCompte(int idCompte) {
+    public Compte getCompte(Long idCompte) {
         return em.find(Compte.class, idCompte);  
 
     }
@@ -73,32 +75,30 @@ public class GestionnaireDeCompte {
         return em.find(Compte.class, id);
     }
 
-    
+   /*
      public Compte creerCompte(Long num, double solde, List<Client> proprietairesCompte){
        Compte compte = new Compte(num, solde, proprietairesCompte);
        em.persist(compte);
        return compte;
     }
-
+*/
+      public void creerCompte(Compte compte){
+       em.persist(compte);
+    
+    }
     
       public Compte update(Compte compte) {
       return em.merge(compte); 
     }
       
-    public List<Compte> getAllComptes() {
-       Query query = em.createNamedQuery("Compte.findAll");  
-        return query.getResultList(); 
-    }
+  
     
-    public List<Compte> getComptes(int start, int nombreDeComptes){
-    Query query=em.createNamedQuery("Compte.findAll");
-    query.setFirstResult(start);
-    query.setMaxResults(nombreDeComptes);
-    
+    public List<Compte> getComptes(){
+    String requete = "select c from Compte c";
+    TypedQuery<Compte> query = em.createQuery(requete, Compte.class);
     return query.getResultList();
+    
     }
-    
-    
     public void delete(Compte c){
     em.remove(c);    }
     
@@ -106,9 +106,10 @@ public class GestionnaireDeCompte {
     Query query=em.createNamedQuery("Compte.findById").setParameter("id",id);
     return(Compte)query.getSingleResult();
     }
-   
+    
+
   
-   public void creerComptesTest() {
+ /*  public void creerComptesTest() {
    Client client1 = new Client();
    List<Client> proprietairesComptes = new ArrayList<>();
    proprietairesComptes.add(client1);
@@ -120,7 +121,7 @@ public class GestionnaireDeCompte {
    creerCompte(12389654610L, 100000, proprietairesComptes);  
   
 } 
-
+*/
   
   
 

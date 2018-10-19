@@ -7,6 +7,7 @@ package edu.unice.banque.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +18,7 @@ import javax.persistence.Id;
  * @author deptinfo
  */
 @Entity
+@DiscriminatorValue("COMPTE_EPARGNE")
 public class CompteEpargne extends  Compte implements Serializable {
  private double taux;
  private double maxEpargne;
@@ -25,12 +27,13 @@ public class CompteEpargne extends  Compte implements Serializable {
     public CompteEpargne() {
     }
 
-    public CompteEpargne(Long numero, double solde, List<Client> listeClientsProprietaires,double taux,double maxEpargne,double minEpargne) {
-        super(numero, solde);
+    public CompteEpargne(double taux, double maxEpargne, double minEpargne) {
         this.taux = taux;
         this.maxEpargne = maxEpargne;
         this.minEpargne = minEpargne;
     }
+
+  
 
     public double getTaux() {
         return taux;

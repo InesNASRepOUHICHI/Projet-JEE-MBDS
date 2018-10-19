@@ -1,28 +1,33 @@
 <?xml version='1.0' encoding='UTF-8' ?>  
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">    
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+ <html xmlns="http://www.w3.org/1999/xhtml"  
                 xmlns:ui="http://java.sun.com/jsf/facelets"  
                 xmlns:h="http://java.sun.com/jsf/html" 
                  xmlns:p="http://primefaces.org/ui"
                  xmlns:f="http://xmlns.jcp.org/jsf/core"
-                 template="./template_default.xhtml"> 
+                template="./template_default.xhtml"> 
+     <body>
+          <ui:composition template="./WEB-INF/template/template.xhtml">
+            
     <f:metadata>  
-        <f:viewParam name="idCustomer" value="#{compteDetailsMBean.id}"  
+        <f:viewParam name="id" value="#{compteDetailsMBean.id}"  
                      required="true"/>  
         <f:viewAction action="#{compteDetailsMBean.loadCompte()}"/>  
     </f:metadata> 
-        <ui:define name="complementTitreEtH1">Détail Compte</ui:define>  
+        <ui:define name="Détail">Détail Compte</ui:define>  
   
     <ui:define name="content">
                <f:view>
 
             <h:form>
-                <h1><h:outputText value="Create/Edit"/></h1>
+                <h1><h:outputText value="DétailCompte"/></h1>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="CompteId:" for="id" />
-                    <h:inputText id="id" value="#{compteDetailsMBean.details.numero}" title="CompteId" required="true" requiredMessage="The CompteId field is required."/>
-                      <h:outputLabel value="Solde:" for="solde" />
-                    <h:inputText id="solde" value="#{compteDetailsMBean.details.solde}" title="solde" />
+                    <p:inputText id="id" value="#{compteDetailsMBean.details.id}" title="CompteId" required="true" requiredMessage="The CompteId field is required."/>
+                      <h:outputLabel value="Numéro Compte :" for="numeroCompte" />
+                      <p:inputText id="numeroCompte" value="#{compteDetailsMBean.details.numeroCompte}" title="numero"/> 
+                    <h:outputLabel value="Solde:" for="solde" />
+                    <p:inputText id="solde" value="#{compteDetailsMBean.details.solde}" title="solde" />
                 </h:panelGrid>
                  <h:commandButton id="update" value="Update" action="#{compteDetailsMBean.update()}"/>  
             </h:form>
@@ -33,3 +38,6 @@
   
 </ui:composition> 
 
+    </body>
+       
+</html> 

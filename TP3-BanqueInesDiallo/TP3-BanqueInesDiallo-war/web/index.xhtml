@@ -1,18 +1,29 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+ <html xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"  
+                xmlns:h="http://java.sun.com/jsf/html" 
+                 xmlns:p="http://primefaces.org/ui"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./template_default.xhtml"> 
 
     <body>
 
-        <ui:composition template="./WEB-INF/template/template.xhtml">
-            <ui:param name="titre" value="Accueil"/>
-            <ui:define name="content">
-                Choisissez dans  le menu de gauche.
-                
-            </ui:define>
-
-        </ui:composition>
+<h:form>            
+  
+        <h:panelGrid columns="2" cellpadding="5">
+            <h:outputLabel for="username" value="Username:" />
+            <p:inputText id="username" value="#{userLoginView.username}" required="true" label="username" />
+ 
+            <h:outputLabel for="password" value="Password:" />
+            <p:password id="password" value="#{userLoginView.password}" required="true" label="password" />
+ 
+            <f:facet name="footer">
+                <p:commandButton value="Login"  actionListener="#{userLoginView.login}"
+                                 oncomplete="handleLoginRequest(xhr, status, args)" />
+            </f:facet>  
+        </h:panelGrid>
+</h:form>
 
     </body>
 </html>
