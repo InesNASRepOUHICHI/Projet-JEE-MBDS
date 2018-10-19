@@ -50,4 +50,8 @@ public class ClientMBean implements Serializable {
         this.client = client;
     }
     
+    public String showDetails(int id) {  
+       return  clientManager.showDetails(id);
+    }
+    
 }

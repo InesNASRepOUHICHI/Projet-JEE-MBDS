@@ -2,7 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
-
+*/
 package edu.unice.banque.test;
 
 import edu.unice.banque.session.GestionnaireDeCompte;
@@ -16,10 +16,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
- */
-/**
- *
- * @author INES NASR
+ 
+
 
 @Singleton
 @Startup
@@ -29,7 +27,7 @@ public class Init implements Serializable {
   @EJB
   private GestionnaireDeCompte gestionnaireDeCompte;
   
-   @PostConstruct
+  /* @PostConstruct
    public void initBase() {
        
            gestionnaireDeCompte.creerCompte(12345678912L, 1500); 
@@ -40,8 +38,9 @@ public class Init implements Serializable {
            gestionnaireDeCompte.creerCompte(12389654610L, 100000);  
             
         
-    }     
+    }  
+*/
    
 } 
    
- */
+ 

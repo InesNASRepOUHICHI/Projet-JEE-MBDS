@@ -79,6 +79,12 @@ public class GestionnaireDeCompte {
        em.persist(compte);
        return compte;
     }
+     
+     public void creerCompt(Long num, double solde) {
+         Compte c = new Compte(num,solde);
+         em.persist(c);
+     
+     }
 
     
       public Compte update(Compte compte) {

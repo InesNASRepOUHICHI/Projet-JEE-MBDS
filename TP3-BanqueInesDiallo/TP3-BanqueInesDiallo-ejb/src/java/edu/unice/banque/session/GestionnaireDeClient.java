@@ -40,13 +40,9 @@ public class GestionnaireDeClient {
     }
      
      public Client findClientByID(Long id){
-        Query query = em.createQuery("SELECT c FROM Client c WHERE c.id =: id");
-        query.setParameter("id", id);
-        return (Client) query.getSingleResult();
+         return em.find(Client.class, id); 
     }
-     
-     
-     
+         
     public Client findClientByName(String nom){
         Query query= em.createQuery("SELECT c FROM client c WHERE c.nom =:nom");
         query.setParameter("nom", nom);
@@ -59,6 +55,18 @@ public class GestionnaireDeClient {
 
             return clients.get(0);
         }
-}
+    }
+    
+    public String showDetails(int id) { 
+        System.out.println("dans show");
+        return "detailsClient?id="+ id;  
+    } 
+   
+    public void update(Client client){
+       em.merge(client);
+    }
+    
+    
+     
 
 }

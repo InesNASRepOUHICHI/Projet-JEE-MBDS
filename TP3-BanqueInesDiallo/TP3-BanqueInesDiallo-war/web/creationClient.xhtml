@@ -7,14 +7,13 @@
       xmlns:p="http://primefaces.org/ui">
 
     <body>
-
         <ui:composition template="./WEB-INF/template/template.xhtml">
-            <ui:param name="titre" value="Créer un client" />
+            <ui:param name="titre" value="Créer un client"/>
             <ui:define name="content">
                 <f:view>
                     <h:form>
                         <h1><h:outputText value="Create/Edit"/></h1>
-                        <h:panelGrid columns="3">
+                        <h:panelGrid columns="1">
                             <h:outputLabel value="Nom:" for="nom" />
                             <h:inputText id="nom" value="#{clientMBean.client.nom}" 
                                          title="Nom" 
@@ -25,19 +24,16 @@
                                          title="Prénom" 
                                          required="true"
                                         />
-                             <h:outputLabel value="Sexe:" for=sexe />
+                             <h:outputLabel value="Sexe:" for="sexe" />
                             <h:inputText id="sexe" value="#{clientMBean.client.sexe}" 
                                          title="Sexe" 
                                          required="true"/>
-                              <h:outputLabel value="Adresse:" for=adresse />
-                              <h:inputText id="adresse" value="#{clientMBean.client.adresse}" 
-                                         title="Adresse" 
-                                         required="true"/>
-                                <h:outputLabel value="Numéro Téléphone:" for= numeroTelephone/>
+                            <h:outputLabel value="Adresse:" for="adresse"/>
+                                <h:outputLabel value="Numéro Téléphone:" for= "numeroTelephone"/>
                                <h:inputText id="numeroTelephone" value="#{clientMBean.client.numeroTelephone}" 
                                          title="Numéro Téléphone" 
                                          required="true"/>
-                                <h:outputLabel value="Email:" for= email/>
+                                <h:outputLabel value="Email:" for= "email"/>
                                 <h:inputText id="email" value="#{clientMBean.client.email}" 
                                          title="Email" 
                                          required="true"/>
@@ -52,6 +48,5 @@
             </ui:define>
 
         </ui:composition>
-
     </body>
 </html>
