@@ -67,14 +67,14 @@ public class DetailsClientsMBean implements Serializable{
    }
     public String update() { 
      clientManager.update(client);
-     return "listeDesClients?faces-redirect=true";  
+     return "listeClients?faces-redirect=true";  
   }  
   
   /** 
    * Action handler - renvoie vers la page qui affiche la liste des clients 
    */  
   public String list() {  
-    return "listeDesClients?faces-redirect=true";  
+    return "listeClients?faces-redirect=true";  
   }  
     
     

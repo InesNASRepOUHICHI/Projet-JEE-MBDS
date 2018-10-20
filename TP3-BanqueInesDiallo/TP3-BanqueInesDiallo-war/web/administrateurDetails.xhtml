@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <f:metadata>  
+        <f:viewParam name="id" value="#{administrateurDetailsMBean.id}"  
+               required="true"/>  
+        <f:viewAction action="#{administrateurDetailsMBean.load()}"/>  
+    </f:metadata>
+    <h:head>
+        <title>Details de l'administrateur</title>
+    </h:head>
+    <h:body>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <p:panelGrid columns="2">
+                    <h:outputLabel value="Id:" for="id" />
+                    <h:inputText id="id" value="#{administrateurDetailsMBean.administrateur.id}" title="Id" />
+                    <h:outputLabel value="Nom:" for="nom" />
+                    <h:inputText id="nom" value="#{administrateurDetailsMBean.administrateur.nom}" title="Nom" />
+                    <h:outputLabel value="Prenom:" for="prenom" />
+                    <h:inputText id="prenom" value="#{administrateurDetailsMBean.administrateur.prenom}" title="Prenom" />
+                    <h:outputLabel value="NumeroTelephone:" for="numeroTelephone" />
+                    <h:inputText id="numeroTelephone" value="#{administrateurDetailsMBean.administrateur.numeroTelephone}" title="NumeroTelephone" />
+                    <h:outputLabel value="Adresse:" for="adresse" />
+                    <h:inputText id="adresse" value="#{administrateurDetailsMBean.administrateur.adresse}" title="Adresse" />
+                    <h:outputLabel value="Sexe:" for="sexe" />
+                    <h:inputText id="sexe" value="#{administrateurDetailsMBean.administrateur.sexe}" title="Sexe" />
+                    <h:outputLabel value="Email:" for="email" />
+                    <h:inputText id="email" value="#{administrateurDetailsMBean.administrateur.email}" title="Email" />
+                    <h:outputLabel value="Password:" for="password" />
+                    <h:inputSecret id="password" value="#{administrateurDetailsMBean.administrateur.password}" title="Password" />
+                    <h:outputLabel value="Role:" for="role" />
+                    <h:inputText id="role" value="#{administrateurDetailsMBean.administrateur.role}" title="Role" />
+                    <h:commandButton id="back" value="Back" action="#{administrateurDetailsMBean.list}"/>  
+                    <h:commandButton id="update" value="Update" action="#{administrateurDetailsMBean.update}"/> 
+                </p:panelGrid>
+            </h:form>
+        </f:view>
+
+ 
+    </h:body>
+</html>
+

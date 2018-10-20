@@ -26,6 +26,12 @@ import javax.persistence.PersistenceContext;
 public class InitBD {
 
     @EJB
+    private GestionnaireDeClient gestionnaireDeClient;
+
+    @EJB
+    private GestionnaireDeConseiller gestionnaireDeConseiller;
+
+    @EJB
     private GestionnaireAdministrateur gestionnaireAdministrateur;
 
     @PersistenceContext(unitName = "TP3-BanqueInesDiallo-ejbPU")
@@ -33,20 +39,32 @@ public class InitBD {
 
     @EJB
     private GestionnaireDeCompte gestionnaireDeCompte;
+    
+    
+    
+    
 
     @PostConstruct
     public void initBase() {
         System.out.println("edu.unice.banque.session.InitBD.initBase()");
         gestionnaireAdministrateur.creerAministrateur();
-
+       
         gestionnaireDeCompte.creerCompte(new Compte(1l, 1500));
         gestionnaireDeCompte.creerCompte(new Compte(2l, 50000));
         gestionnaireDeCompte.creerCompte(new Compte(3l, 150000));
         gestionnaireDeCompte.creerCompte(new Compte(4l, 950000));
         gestionnaireDeCompte.creerCompte(new Compte(5l, 20000));
         gestionnaireDeCompte.creerCompte(new Compte(6l, 100000));
+        
+        gestionnaireDeConseiller.creerConseiller();
+        gestionnaireDeClient.creerClient();
 
     }
+    
+    public void add(){
+      gestionnaireDeConseiller.creerConseiller();
+    }
+  
 
     public void persist(Object object) {
         em.persist(object);

@@ -6,7 +6,10 @@
 package edu.unice.banque.session;
 
 import edu.unice.banque.entities.Client;
+import edu.unice.banque.entities.Conseiller;
+import edu.unice.banque.entities.Role;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
@@ -23,8 +26,13 @@ import javax.persistence.Query;
 @LocalBean
 public class GestionnaireDeClient {
 
+    @EJB
+    private GestionnaireDeConseiller gestionnaireDeConseiller;
+
     @PersistenceContext(unitName = "TP3-BanqueInesDiallo-ejbPU")
     private EntityManager em;
+    
+   
 
     public void persist(Object object) {
         em.persist(object);
@@ -64,6 +72,20 @@ public class GestionnaireDeClient {
 
     public void update(Client client) {
         em.merge(client);
+    }
+    
+    public void creerClient(){
+        
+        String sexe [] = {"F","M"};
+        List<Conseiller> conseillers = gestionnaireDeConseiller.getAllConseillers();
+        
+        em.persist(new Client(0,conseillers.get((int)(Math.random() * conseillers.size())),"Lelaidier","Patrick","04532314","Liberation",sexe[(int)(Math.random() *2)],"patrick@gmail.com","patrick",Role.CLIENT));    
+        //em.persist(new Client(conseillers.get(0,conseillers.get((int)(Math.random() * conseillers.size())),"Diallo", "Hasso", "04432316", "Arenas", sexe[(int)(Math.random() *2)], "hasso@gmail.com", "diallo", Role.ADMIN)));
+        em.persist(new Client(1,conseillers.get((int)(Math.random() * conseillers.size())),"Perez", "Mari", "04438314", "Thier", sexe[(int)(Math.random() *2)], "perez@gmail.com", "perez", Role.CLIENT));
+        em.persist(new Client(0,conseillers.get((int)(Math.random() * conseillers.size())),"Ezaher", "Fatima", "04432399", "Moulin", sexe[(int)(Math.random() *2)], "fatima@gmail.com", "fatima", Role.CLIENT));
+        em.persist(new Client(1,conseillers.get((int)(Math.random() * conseillers.size())),"Lelaidier", "Patrick", "04532314", "Liberatin", sexe[(int)(Math.random() *2)], "patrick@gmail.com", "patrick", Role.CLIENT));
+
+    
     }
 
 }

@@ -15,16 +15,26 @@
 
             <p:submenu label="Liste des comptes bancaires" >
                 <p:menuitem outcome="/listeComptes" value="Liste des comptes"/>
-                <p:menuitem outcome="/creerCompte" value="Créaction d'un nouveau compte "/>
-                 
-            </p:submenu> 
+                <p:menuitem outcome="/creerCompte" value="Créaction d'un nouveau compte "/>   
+           </p:submenu> 
             <p:submenu label = "Gestion des clients">
             <p:menuitem outcome="/listeClients" value ="Liste des Clients"/>
             <p:menuitem 
                  outcome="creationClient" 
                  value="Créaction d'un nouveau client"/>
-        </p:submenu>
+          </p:submenu>
+           <p:submenu label = "Gestion des administrateurs">
+               <p:menuitem outcome="/listeAdministrateurs" value ="Liste administrateurs"/>
+           </p:submenu> 
+            
+            <p:submenu label="Liste des Conseillers" >
+                <p:menuitem outcome="/listeConseillers" value="Liste des Conseillers"/>
+                <p:menuitem outcome="/creerCompte" value="Créaction d'un nouveau compte "/>    
+           </p:submenu>
+           
+          
         </p:panelMenu>
+        
     </h:form>
 
 </ui:composition>

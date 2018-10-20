@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 @Entity
 public class Administrateur extends Personnee implements Serializable {
 
+   
+
     @OneToMany
     private List<Conseiller> listeConseillers;
 

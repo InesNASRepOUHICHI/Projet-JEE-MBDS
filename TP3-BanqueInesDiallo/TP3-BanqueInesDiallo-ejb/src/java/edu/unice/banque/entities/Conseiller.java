@@ -23,6 +23,8 @@ public class Conseiller extends Personnee implements Serializable {
     
     @ManyToOne
     private Administrateur administrateur;
+    
+    private Long id;
 
     public Conseiller() {
     }
@@ -34,6 +36,23 @@ public class Conseiller extends Personnee implements Serializable {
         this.administrateur = administrateur;
     }
 
+    public Conseiller(String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role,Long idAdmin) {
+        super(nom, prenom, numeroTelephone, adresse, sexe, email, password, role);
+        this.id = idAdmin;
+    }
+
+    public Conseiller(Administrateur administrateur, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
+        super(nom, prenom, numeroTelephone, adresse, sexe, email, password, role);
+        this.administrateur = administrateur;
+    }
+
+    public Conseiller(List<Client> listeClients, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
+        super(nom, prenom, numeroTelephone, adresse, sexe, email, password, role);
+        this.listeClients = listeClients;
+    }
+    
+    
+   
     public Conseiller(List<Client> listeClients, Administrateur administrateur, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
         super(nom, prenom, numeroTelephone, adresse, sexe, email, password, role);
         this.listeClients = listeClients;

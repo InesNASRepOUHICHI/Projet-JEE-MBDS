@@ -39,6 +39,14 @@ public class Client extends Personnee implements Serializable  {
     public Client() {
     }
 
+    public Client(int estCoProprietaire, Conseiller conseiller, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
+        super(nom, prenom, numeroTelephone, adresse, sexe, email, password, role);
+        this.estCoProprietaire = estCoProprietaire;
+        this.conseiller = conseiller;
+    }
+    
+    
+
     public Client(int estCoProprietaire, List<Compte> listComptes, Conseiller conseiller, List<Operation> listeOperations) {
         this.estCoProprietaire = estCoProprietaire;
         this.listComptes = listComptes;
@@ -62,8 +70,15 @@ public class Client extends Personnee implements Serializable  {
         this.listeOperations = listeOperations;
     }
 
+    public Client(int estCoProprietaire, List<Compte> listComptes, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
+        super(nom, prenom, numeroTelephone, adresse, sexe, email, password, role);
+        this.estCoProprietaire = estCoProprietaire;
+        this.listComptes = listComptes;
+    }
+    
 
 
+     
    
 
     public int isEstCoProprietaire() {
