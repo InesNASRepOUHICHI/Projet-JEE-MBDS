@@ -30,23 +30,23 @@ public class GestionnaireDeClient {
         em.persist(object);
     }
 
-    public List<Client> getAllClient(){
+    public List<Client> getAllClient() {
         Query query = em.createQuery("SELECT c FROM Client c");
         return query.getResultList();
     }
-    
-     public void addClient (Client client){
+
+    public void addClient(Client client) {
         em.persist(client);
     }
-     
-     public Client findClientByID(Long id){
-         return em.find(Client.class, id); 
+
+    public Client findClientByID(Long id) {
+        return em.find(Client.class, id);
     }
-         
-    public Client findClientByName(String nom){
-        Query query= em.createQuery("SELECT c FROM client c WHERE c.nom =:nom");
+
+    public Client findClientByName(String nom) {
+        Query query = em.createQuery("SELECT c FROM client c WHERE c.nom =:nom");
         query.setParameter("nom", nom);
-         try {
+        try {
             return (Client) query.getSingleResult();
         } catch (NoResultException e) {
             return null;
@@ -56,17 +56,14 @@ public class GestionnaireDeClient {
             return clients.get(0);
         }
     }
-    
-    public String showDetails(int id) { 
+
+    public String showDetails(int id) {
         System.out.println("dans show");
-        return "detailsClient?id="+ id;  
-    } 
-   
-    public void update(Client client){
-       em.merge(client);
+        return "detailsClient?id=" + id;
     }
-    
-    
-     
+
+    public void update(Client client) {
+        em.merge(client);
+    }
 
 }

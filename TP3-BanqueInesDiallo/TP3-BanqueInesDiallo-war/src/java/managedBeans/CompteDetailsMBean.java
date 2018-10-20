@@ -10,20 +10,20 @@ import edu.unice.banque.entities.Compte;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import edu.unice.banque.session.GestionnaireDeCompte;
+import javax.faces.view.ViewScoped;
 
 /**
  *
  * @author INES NASR
  */
 @Named(value = "compteDetailsMBean")
-@Dependent
+@ViewScoped
 public class CompteDetailsMBean implements Serializable{
 
     @EJB
-    private GestionnaireDeCompte gestionnaireDeCompteBancaire;
- private int id;  
+  private GestionnaireDeCompte gestionnaireDeCompteBancaire;
+  private Long id;  
   private Compte compte; 
     /**
      * Creates a new instance of CompteDetailsMBean
@@ -59,14 +59,31 @@ public class CompteDetailsMBean implements Serializable{
     public CompteDetailsMBean() {
     }
 
-    public int getId() {
+    public GestionnaireDeCompte getGestionnaireDeCompteBancaire() {
+        return gestionnaireDeCompteBancaire;
+    }
+
+    public void setGestionnaireDeCompteBancaire(GestionnaireDeCompte gestionnaireDeCompteBancaire) {
+        this.gestionnaireDeCompteBancaire = gestionnaireDeCompteBancaire;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
+    public Compte getCompte() {
+        return compte;
+    }
+
+    public void setCompte(Compte compte) {
+        this.compte = compte;
+    }
+
+  
   
     
 }

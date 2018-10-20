@@ -7,6 +7,7 @@ package edu.unice.banque.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +18,7 @@ import javax.persistence.Id;
  * @author deptinfo
  */
 @Entity 
+@DiscriminatorValue("COMPTE_COURANT")
 public class CompteCourant extends Compte implements Serializable {
     private double montantPret;
     private double montantDecouvert;
@@ -24,11 +26,28 @@ public class CompteCourant extends Compte implements Serializable {
         
     }
 
-    public CompteCourant(Long numero, double solde, List<Client> listeClientsProprietaires,double pret,double montantDecouvert) {
-        super(numero, solde);
-        this.montantPret = pret;
+    public CompteCourant(double montantPret, double montantDecouvert) {
+        this.montantPret = montantPret;
         this.montantDecouvert = montantDecouvert;
     }
+
+    public double getMontantPret() {
+        return montantPret;
+    }
+
+    public void setMontantPret(double montantPret) {
+        this.montantPret = montantPret;
+    }
+
+    public double getMontantDecouvert() {
+        return montantDecouvert;
+    }
+
+    public void setMontantDecouvert(double montantDecouvert) {
+        this.montantDecouvert = montantDecouvert;
+    }
+
+   
     
     
 }

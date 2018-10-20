@@ -6,6 +6,7 @@
 package edu.unice.banque.session;
 
 import edu.unice.banque.entities.Administrateur;
+import edu.unice.banque.entities.Compte;
 import edu.unice.banque.entities.Conseiller;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -32,20 +33,23 @@ public class InitBD {
 
     @EJB
     private GestionnaireDeCompte gestionnaireDeCompte;
-    
-    
+
     @PostConstruct
-    public void initBase(){
-     gestionnaireDeCompte.creerCompt(1L, 2);
-     gestionnaireDeCompte.creerCompt(2L, 2);
-     System.out.println("edu.unice.banque.session.InitBD.initBase()");
-     gestionnaireAdministrateur.creerAministrateur();
-     
+    public void initBase() {
+        System.out.println("edu.unice.banque.session.InitBD.initBase()");
+        gestionnaireAdministrateur.creerAministrateur();
+
+        gestionnaireDeCompte.creerCompte(new Compte(1l, 1500));
+        gestionnaireDeCompte.creerCompte(new Compte(2l, 50000));
+        gestionnaireDeCompte.creerCompte(new Compte(3l, 150000));
+        gestionnaireDeCompte.creerCompte(new Compte(4l, 950000));
+        gestionnaireDeCompte.creerCompte(new Compte(5l, 20000));
+        gestionnaireDeCompte.creerCompte(new Compte(6l, 100000));
+
     }
 
     public void persist(Object object) {
         em.persist(object);
     }
-    
-    
+
 }

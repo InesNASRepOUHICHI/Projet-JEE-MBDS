@@ -12,7 +12,7 @@ package edu.unice.banque.entities;
 public enum TypeOperation {
     
     VIREMENT("VIREMENT"),
-    VERSEMENT("VE VIREMENT(\"VIRRSEMENT"),
+    VERSEMENT("VERSEMENT"),
     RETRAIT("RETRAIT");
  
     private final String typeOperation;

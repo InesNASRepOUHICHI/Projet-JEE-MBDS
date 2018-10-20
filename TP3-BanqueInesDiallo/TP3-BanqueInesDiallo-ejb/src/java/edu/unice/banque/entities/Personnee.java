@@ -32,12 +32,12 @@ public class Personnee implements Serializable {
     private String sexe;
     private String email;
     private String password;
-    private String role;
+    private Role role;
 
     public Personnee() {
     }
 
-    public Personnee(String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, String role) {
+    public Personnee(String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
         this.nom = nom;
         this.prenom = prenom;
         this.numeroTelephone = numeroTelephone;
@@ -48,7 +48,7 @@ public class Personnee implements Serializable {
         this.role = role;
     }
 
-    public Personnee(Long id, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, String role) {
+    public Personnee(Long id, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -124,11 +124,11 @@ public class Personnee implements Serializable {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
