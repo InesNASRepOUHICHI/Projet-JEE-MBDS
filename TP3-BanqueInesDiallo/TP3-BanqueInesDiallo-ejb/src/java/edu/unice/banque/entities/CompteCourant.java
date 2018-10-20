@@ -26,11 +26,14 @@ public class CompteCourant extends Compte implements Serializable {
         
     }
 
+    
+    
     public CompteCourant(double montantPret, double montantDecouvert) {
         this.montantPret = montantPret;
         this.montantDecouvert = montantDecouvert;
     }
 
+    
     public double getMontantPret() {
         return montantPret;
     }

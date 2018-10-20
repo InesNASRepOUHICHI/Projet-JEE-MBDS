@@ -5,7 +5,7 @@
 */
 package edu.unice.banque.test;
 
-import edu.unice.banque.session.GestionnaireDeCompte;
+import edu.unice.banque.session.GestionnaireCompteBean;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -25,7 +25,7 @@ import javax.persistence.Id;
 public class Init implements Serializable {
 
   @EJB
-  private GestionnaireDeCompte gestionnaireDeCompte;
+  private GestionnaireCompteBean gestionnaireDeCompte;
   
   /* @PostConstruct
    public void initBase() {

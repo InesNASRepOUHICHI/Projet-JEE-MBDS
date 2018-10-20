@@ -10,7 +10,7 @@ import edu.unice.banque.entities.Compte;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import edu.unice.banque.session.GestionnaireDeCompte;
+import edu.unice.banque.session.GestionnaireCompteBean;
 import javax.faces.view.ViewScoped;
 
 /**
@@ -22,7 +22,7 @@ import javax.faces.view.ViewScoped;
 public class CompteDetailsMBean implements Serializable{
 
     @EJB
-  private GestionnaireDeCompte gestionnaireDeCompteBancaire;
+  private GestionnaireCompteBean gestionnaireDeCompteBancaire;
   private Long id;  
   private Compte compte; 
     /**
@@ -40,7 +40,7 @@ public class CompteDetailsMBean implements Serializable{
    */  
   public String update() {  
     System.out.println("###UPDATE###");  
-    compte = gestionnaireDeCompteBancaire.update(compte);  
+    compte = gestionnaireDeCompteBancaire.updateCompte(compte);  
     return "CompteList";  
   }  
   
@@ -59,11 +59,11 @@ public class CompteDetailsMBean implements Serializable{
     public CompteDetailsMBean() {
     }
 
-    public GestionnaireDeCompte getGestionnaireDeCompteBancaire() {
+    public GestionnaireCompteBean getGestionnaireDeCompteBancaire() {
         return gestionnaireDeCompteBancaire;
     }
 
-    public void setGestionnaireDeCompteBancaire(GestionnaireDeCompte gestionnaireDeCompteBancaire) {
+    public void setGestionnaireDeCompteBancaire(GestionnaireCompteBean gestionnaireDeCompteBancaire) {
         this.gestionnaireDeCompteBancaire = gestionnaireDeCompteBancaire;
     }
 

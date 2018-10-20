@@ -12,7 +12,8 @@ package edu.unice.banque.entities;
 public enum Role {
     CLIENT("CLIENT"),
     CONSEILLER("CONSEILLER"),
-    ADMIN("ADMIN");
+    ADMIN("ADMIN"),
+    UNDEFINED("UNDEFINED");
  
     private final String role;
  

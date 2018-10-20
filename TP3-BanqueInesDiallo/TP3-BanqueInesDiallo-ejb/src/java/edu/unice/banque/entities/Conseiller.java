@@ -46,6 +46,12 @@ public class Conseiller extends Personnee implements Serializable {
         this.administrateur = administrateur;
     }
 
+    public Conseiller(String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
+        super(nom, prenom, numeroTelephone, adresse, sexe, email, password, role);
+    }
+
+   
+
     public List<Client> getListeClients() {
         return listeClients;
     }

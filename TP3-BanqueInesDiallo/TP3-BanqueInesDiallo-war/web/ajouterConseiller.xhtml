@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+
+
+
+        <ui:composition template="./WEB-INF/template/template.xhtml">
+            <ui:param name="titre" value="Créer un compte" />
+            <ui:define name="content">
+                <f:view>
+                    <h:form>
+                        <h1><h:outputText value="Create/Edit"/></h1>
+                        <h:panelGrid columns="3">
+                            <h:outputLabel value="Numéro:" for="numero" />
+                            <p:inputText id="numeto" value="#{compteMBean.compte.numeroCompte}" 
+                                         title="Numéro" 
+                                         required="true"/><br/>
+
+                            <h:outputLabel value="Solde:" for="solde" />
+                            <p:inputText id="solde" value="#{compteMBean.compte.solde}" 
+                                         title="Solde" 
+                                         required="true"
+                                         converterMessage="Le solde doit être un  nombre entier"/><br/>
+                            <h:outputLabel value="Type:" for="type" />
+                            <p:selectOneMenu id="typeCompte" value="#{compteMBean.typeDeCompte}" style="width:150px" >
+                                <f:selectItem itemLabel="Compte courant" itemValue="CC" noSelectionOption="false" />
+                                <f:selectItem itemLabel="Compte épargne" itemValue="CE" noSelectionOption="false" />    
+                                <f:ajax render="@form" />
+                            </p:selectOneMenu><br/>
+
+
+
+                        </h:panelGrid>
+
+                        <h:panelGroup rendered="#{compteMBean.typeDeCompte == 'CC'}">
+                            <h1><h:outputText value="Détails du Compte Courant"/></h1>
+                            <h:panelGrid columns="3">
+                            <h:outputLabel value="Découvert:" for="decouvert" />
+                            <p:inputText id="decouvert" value="#{compteMBean.compteCourant.montantDecouvert}" 
+                                         title="Découvert" 
+                                         required="true"/><br/>
+                            <h:outputLabel value="Pret:" for="pret" />
+                            <p:inputText id="pret" value="#{compteMBean.compteCourant.montantPret}" 
+                                         title="Pret" 
+                                         required="true"/><br/>
+                            </h:panelGrid>
+                        </h:panelGroup><br/>
+
+                        <h:panelGroup rendered="#{compteMBean.typeDeCompte == 'CE'}">
+                            <h1><h:outputText value="Détails du Compte Epargne"/></h1>
+                            <h:panelGrid columns="3">
+                            <h:outputLabel value="Taux:" for="taux" />
+                            <p:inputText id="taux" value="#{compteMBean.compteEpargne.taux}" 
+                                         title="Taux" 
+                                         required="true"/><br/>
+                            <h:outputLabel value="Max Epargne:" for="maxEpargne" />
+                            <p:inputText id="maxEpargne" value="#{compteMBean.compteEpargne.maxEpargne}" 
+                                         title="maxEpargne" 
+                                         required="true"/><br/>
+                            <h:outputLabel value="Min Epargne:" for="minEpargne" />
+                            <p:inputText id="minEpargne" value="#{compteMBean.compteEpargne.minEpargne}" 
+                                         title="minEpargne" 
+                                         required="true"/><br/>
+                            </h:panelGrid>
+                        </h:panelGroup><br/>
+
+                        <div id="nvClient">
+                            <h1><h:outputText value="Client Propriétaire"/></h1>
+                            <h:panelGrid columns="3">
+                                <h:outputLabel value="Nom:" for="nom" />
+                                <p:inputText id="nom" value="#{compteMBean.client.nom}" 
+                                             title="Nom" 
+                                             required="true"/><br/>
+
+                                <h:outputLabel value="Prénom:" for="prenom" />
+                                <p:inputText id="prenom" value="#{compteMBean.client.prenom}" 
+                                             title="Prénom" 
+                                             required="true"/><br/>
+                                <h:outputLabel value="Quel est votre sexe?:"  for="sexe" />
+                                <p:selectOneRadio id="sexe" value="#{compteMBean.client.sexe}">
+                                    <f:selectItem itemLabel="Femme" itemValue="Femme" />
+                                    <f:selectItem itemLabel="Homme" itemValue="Homme" />
+                                </p:selectOneRadio>
+                                <br/>
+
+                                <h:outputLabel value="Adresse:" for="adresse" />
+                                <p:inputText id="adresse" value="#{compteMBean.client.adresse}" 
+                                             title="Adresse" 
+                                             required="true"/><br/>
+                                <h:outputLabel value="Numéro Téléphone:" for= "numeroTelephone"/>
+                                <p:inputText id="numeroTelephone" value="#{compteMBean.client.numeroTelephone}" 
+                                             title="Numéro Téléphone" 
+                                             required="true"/><br/>
+                                <h:outputLabel value="Email:" for= "email"/>
+                                <p:inputText id="email" value="#{compteMBean.client.email}" 
+                                             title="Email" 
+                                             required="true"/><br/>
+                                <h:outputText value="Password: " />
+                                <p:password id="password" value="#{compteMBean.client.password}" /><br/>
+                            </h:panelGrid>
+
+                        </div>
+
+                        <p:commandButton action='#{compteMBean.addCompte()}'
+                                         value="Créer le compte"/>
+                        <p:commandButton type="reset" value="Annuler" />
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+
+</html>

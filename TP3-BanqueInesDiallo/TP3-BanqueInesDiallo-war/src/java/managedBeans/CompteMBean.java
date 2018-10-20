@@ -14,7 +14,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
-import edu.unice.banque.session.GestionnaireDeCompte;
+import edu.unice.banque.session.GestionnaireCompteBean;
 import java.util.ArrayList;
 
 /**
@@ -31,7 +31,7 @@ public class CompteMBean implements Serializable {
      * Creates a new instance of CompteMBean
      */
     @EJB
-    private GestionnaireDeCompte compteManager;
+    private GestionnaireCompteBean compteManager;
 
     private Client client; 
     private Compte compte;
@@ -66,7 +66,7 @@ public class CompteMBean implements Serializable {
         clientsProprietaires.add(client);
         compteACreer.setListeClientsProprietaires(clientsProprietaires);
         
-         compteManager.creerCompte(compteACreer);
+         compteManager.createCompte(compteACreer);
          return "client ajouté ";
      }
  
@@ -75,21 +75,22 @@ public String showDetails(Long id) {
       return "detailsCompte?id=" + id;   
     }  
 public String ajouterMontant(){
-        compteManager.deposer(compte, montant);
+       
+    
         return "Montant ajouté";
     }
     
      public String retirerMontant(){
-        compteManager.retirer(compte, montant);
-        return "Monrtant retiré";
+
+         return "Monrtant retiré";
     }
  public void suppression(){
-         compteManager.delete(this.compte);
+         compteManager.supprimerCompte(this.compte);
      }
  
   public String update() {  
         System.out.println("###UPDATE###");  
-        compte = compteManager.update(compte);
+
         return "listeComptes";  
     }  
 public String showDetails(long compteId) {  
@@ -111,13 +112,6 @@ public String showDetails(long compteId) {
         this.montant = montant;
     }
 
-    public GestionnaireDeCompte getCompteManager() {
-        return compteManager;
-    }
-
-    public void setCompteManager(GestionnaireDeCompte compteManager) {
-        this.compteManager = compteManager;
-    }
 
     public String getTypeDeCompte() {
         return typeDeCompte;

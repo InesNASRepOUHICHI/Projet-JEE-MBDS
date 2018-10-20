@@ -32,12 +32,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @DiscriminatorColumn(name="TYPE_COMPTE")
 @DiscriminatorValue("COMPTE")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Compte.findAll", query = "SELECT c FROM Compte c")
-    ,@NamedQuery(name = "Compte.findByCompteId", query = "SELECT c FROM Compte c WHERE c.id = :id")
-    ,@NamedQuery(name = "Compte.findByNumero", query = "SELECT c FROM Compte c WHERE c.numeroCompte = :numeroCompte")
-    ,@NamedQuery(name = "Compte.findBySolde", query = "SELECT c FROM Compte c WHERE c.solde = :solde")
-})
 public class Compte implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,7 +39,6 @@ public class Compte implements Serializable {
    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Long numeroCompte;
-    private Long numero;
     private double solde;
     
     @ManyToMany(cascade={CascadeType.ALL}, fetch= FetchType.EAGER)

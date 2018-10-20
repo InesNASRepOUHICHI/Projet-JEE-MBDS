@@ -13,17 +13,14 @@
                 <p:menuitem outcome="/index" value="Accueil"/>
             </p:submenu>
 
-            <p:submenu label="Liste des comptes bancaires" >
-                <p:menuitem outcome="/listeComptes" value="Liste des comptes"/>
-                <p:menuitem outcome="/creerCompte" value="Créaction d'un nouveau compte "/>
+            <p:submenu label="Liste des clients" >
+                <p:menuitem outcome="/listeClients" value="Liste des client"/>
+                <p:menuitem outcome="/ajouterClient" value="Créaction d'un nouveau client "/>
                  
             </p:submenu> 
-            <p:submenu label = "Gestion des clients">
-            <p:menuitem outcome="/listeClients" value ="Liste des Clients"/>
-            <p:menuitem 
-                 outcome="ajouterClient" 
-                 value="Créaction d'un nouveau client"/>
-        </p:submenu>
+            <p:submenu label = "Gestion des comptes">
+            <p:menuitem outcome="/listeComptes" value ="Liste des comptes"/>
+            </p:submenu> 
         </p:panelMenu>
     </h:form>
 

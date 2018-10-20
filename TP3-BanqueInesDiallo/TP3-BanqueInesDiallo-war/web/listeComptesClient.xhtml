@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>  
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">    
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"  
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      template="./template_default.xhtml"> 
+    <body>
+        <ui:composition template="./WEB-INF/template/template.xhtml">
+            <ui:define name="complementTitreEtH1">ListComptes</ui:define>  
+
+            <ui:define name="content"> 
+                <h:form>
+                    <h1><h:outputText value="List"/></h1>
+                    <p:dataTable id="tbl" value="#{compteMBean.comptes}" var="item"  widgetVar="compteTable"  
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                                 paginator="true" rows="10"  style="min-width: 100px">
+
+                        <f:facet name="{Exporters}">
+<!--                            <h:commandLink>
+                                <p:graphicImage name="images/excel.png" width="24"/>
+                                <p:dataExporter type="xls" target="tbl" fileName="Comptes" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage name="images/pdf.png" width="24"/>
+                                <p:dataExporter type="pdf" target="tbl" fileName="Comptes"/>
+                            </h:commandLink>-->
+
+                            <h:commandLink>
+                                <p:graphicImage name="images/csv.png" width="24"/>
+                                <p:dataExporter type="csv" target="tbl" fileName="Comptes" />
+                            </h:commandLink>
+<!--
+                            <h:commandLink>
+                                <p:graphicImage name="images/xml.png" width="24"/>
+                                <p:dataExporter type="xml" target="tbl" fileName="Comptes" />
+                            </h:commandLink>-->
+                        </f:facet>
+
+                        <f:facet name="header">    
+                            <p:outputPanel>    
+                                <h:outputText value="Search all fields:" />    
+                                <p:inputText id="globalFilter" onkeyup="compteTable.filter()" />    
+                            </p:outputPanel>    
+                        </f:facet>    
+
+                        <p:column headerText="Numéro de compte"  
+                                  sortBy="#{item.numeroCompte}"  
+                                  filterBy="#{item.numeroCompte}"  
+                                  filterMatchMode="contains">
+                          
+                              <h:link outcome="#{compteMBean.showDetails(item.id)}" value="#{item.numeroCompte}"/>    
+
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Solde"/>
+                            </f:facet>
+                            <h:outputText value="#{item.solde}"/>
+                        </p:column>
+                        <p:column headerText="Historique">
+                                    <p:commandButton action="#{compteBean.showDetails(item)}" icon="ui-icon-search"/>                                  
+                                </p:column>
+                                
+                                <p:column headerText="Opérations">
+                                    <p:commandButton action="#{compteBean.operation(item)}" icon="ui-icon-pencil"/>                                  
+                                </p:column>
+                            
+                                <p:column headerText="Suppression" >
+                                    <p:commandLink oncomplete="deleteDlg.show();">
+                                        <h:panelGroup styleClass="ui-icon ui-icon-trash" />
+                                        <f:setPropertyActionListener value="#{item}" target="#{compteBean.compte}" />
+                                    </p:commandLink>                 
+                                </p:column>      
+                    </p:dataTable>
+                    <h3>Exporter la page courante seulement</h3>
+<!--                    <h:commandLink>
+                        <p:graphicImage name="images/excel.png" />
+                        <p:dataExporter type="xls" target="tbl" fileName="Comptes" pageOnly="true"/>
+                    </h:commandLink>-->
+
+<!--                    <h:commandLink>
+                        <p:graphicImage name="images/pdf.png" />
+                        <p:dataExporter type="pdf" target="tbl" fileName="Comptes" pageOnly="true" />
+                    </h:commandLink>-->
+
+                    <h:commandLink>
+                        <p:graphicImage name="images/csv.png" />
+                        <p:dataExporter type="csv" target="tbl" fileName="Comptes" pageOnly="true" />
+                    </h:commandLink>
+
+<!--                    <h:commandLink>
+                        <p:graphicImage name="images/xml.png" />
+                        <p:dataExporter type="xml" target="tbl" fileName="Comptes" pageOnly="true" />
+                    </h:commandLink>-->
+                </h:form>
+            </ui:define>  
+        </ui:composition>
+    </body>
+
+</html> 
+
