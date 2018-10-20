@@ -48,6 +48,8 @@ public class GestionnaireClientBean {
         Query query = em.createQuery(Query_Select_Client_By_Email);
         query.setParameter("email", email);
         try {
+            System.out.println("INES-DEBUG");
+            System.out.println(query.getSingleResult());
             return (Client) query.getSingleResult();
         } catch (NoResultException e) {
             return null;

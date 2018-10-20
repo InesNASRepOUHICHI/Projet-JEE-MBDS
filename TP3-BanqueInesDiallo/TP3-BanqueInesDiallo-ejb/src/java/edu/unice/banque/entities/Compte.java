@@ -6,6 +6,7 @@
 package edu.unice.banque.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
@@ -19,35 +20,36 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
-
 
 /**
  *
  * @author INES NASR
  */
-@Entity  @Inheritance(strategy=InheritanceType.SINGLE_TABLE) 
-@DiscriminatorColumn(name="TYPE_COMPTE")
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TYPE_COMPTE")
 @DiscriminatorValue("COMPTE")
 @XmlRootElement
 public class Compte implements Serializable {
 
     private static final long serialVersionUID = 1L;
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Long numeroCompte;
     private double solde;
-    
-    @ManyToMany(cascade={CascadeType.ALL}, fetch= FetchType.EAGER)
-    private List<Client> listeClientsProprietaires;
+
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private List<Client> listeClientsProprietaires = new ArrayList<Client>();
+
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private List<Operation> listeOperations = new ArrayList<Operation>();
 
     public Compte() {
     }
 
-  
     public double getSolde() {
         return solde;
     }
@@ -72,7 +74,6 @@ public class Compte implements Serializable {
         this.id = id;
     }
 
-   
     @Override
     public int hashCode() {
         int hash = 7;
@@ -110,8 +111,10 @@ public class Compte implements Serializable {
 
     @Override
     public String toString() {
-        return "Compte{" + "id=" + id + ", numeroCompte=" + numeroCompte + ", solde=" + solde + ", listeClientsProprietaires=" + listeClientsProprietaires + '}';
+        return "Compte{" + "id=" + id + ", numeroCompte=" + numeroCompte + ", solde=" + solde + ", listeClientsProprietaires=" + listeClientsProprietaires + ", listeOperations=" + listeOperations + '}';
     }
+
+   
 
     public Compte(Long numeroCompte, double solde) {
         this.numeroCompte = numeroCompte;
@@ -133,10 +136,4 @@ public class Compte implements Serializable {
         this.numeroCompte = numeroCompte;
     }
 
-  
-   
-
-   
-
-    
 }

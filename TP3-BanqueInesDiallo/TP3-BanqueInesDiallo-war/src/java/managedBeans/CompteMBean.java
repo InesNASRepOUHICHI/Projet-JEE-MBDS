@@ -9,6 +9,8 @@ import edu.unice.banque.entities.Client;
 import edu.unice.banque.entities.Compte;
 import edu.unice.banque.entities.CompteCourant;
 import edu.unice.banque.entities.CompteEpargne;
+import edu.unice.banque.entities.Personnee;
+import edu.unice.banque.session.GestionnaireClientBean;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -25,76 +27,87 @@ import java.util.ArrayList;
 @ViewScoped
 public class CompteMBean implements Serializable {
 
-   
-
     /**
      * Creates a new instance of CompteMBean
      */
     @EJB
     private GestionnaireCompteBean compteManager;
+    @EJB
+    private GestionnaireClientBean clientManager;
 
-    private Client client; 
+    private Client client;
     private Compte compte;
     private CompteEpargne compteEpargne;
     private CompteCourant compteCourant;
 
     private int montant = 0;
     private String typeDeCompte = "CC";
-    
-   public CompteMBean() {
-       client = new Client();
-       compte = new Compte();
-       compteEpargne = new CompteEpargne();
-       compteCourant = new CompteCourant();
+
+    public CompteMBean() {
+        client = new Client();
+        compte = new Compte();
+        compteEpargne = new CompteEpargne();
+        compteCourant = new CompteCourant();
     }
-     public List<Compte> getComptes() {  
-    return compteManager.getComptes();
-    }  
-     
-    public String addCompte(){
+
+    public List<Compte> getComptes() {
+        return compteManager.getComptes();
+    }
+    
+    public List<Compte> getComptesClient() {
+        Personnee p = UserLoginManagedBean.personneConnectee;
+        Client c = clientManager.findClientByEmail(p.getEmail());
+        List<Compte> comptesClientConnecte =  c.getListComptes();
+        
+        return comptesClientConnecte;
+    }
+
+    public String addCompte() {
         Compte compteACreer = null;
         System.out.println(typeDeCompte);
-        if(typeDeCompte.equals("CC")){
+        if (typeDeCompte.equals("CC")) {
             compteACreer = new CompteCourant(compteCourant.getMontantPret(), compteCourant.getMontantDecouvert());
-        } else if(typeDeCompte.equals("CE")){
+        } else if (typeDeCompte.equals("CE")) {
             compteACreer = new CompteEpargne(compteEpargne.getTaux(), compteEpargne.getMaxEpargne(), compteEpargne.getMinEpargne());
         }
         compteACreer.setNumeroCompte(compte.getNumeroCompte());
         compteACreer.setSolde(compte.getSolde());
-        
+
         List<Client> clientsProprietaires = new ArrayList<Client>();
         clientsProprietaires.add(client);
         compteACreer.setListeClientsProprietaires(clientsProprietaires);
-        
-         compteManager.createCompte(compteACreer);
-         return "client ajouté ";
-     }
- 
 
-public String showDetails(Long id) {  
-      return "detailsCompte?id=" + id;   
-    }  
-public String ajouterMontant(){
-       
-    
+        compteManager.createCompte(compteACreer);
+        return "client ajouté ";
+    }
+
+    public String showDetails(Long id) {
+        return "detailsCompte?id=" + id;
+    }
+
+    public String ajouterMontant() {
+
         return "Montant ajouté";
     }
-    
-     public String retirerMontant(){
 
-         return "Monrtant retiré";
+    public String retirerMontant() {
+
+        return "Monrtant retiré";
     }
- public void suppression(){
-         compteManager.supprimerCompte(this.compte);
-     }
- 
-  public String update() {  
-        System.out.println("###UPDATE###");  
 
-        return "listeComptes";  
-    }  
-public String showDetails(long compteId) {  
-        return "CompteDetails?id=" + compteId;}   
+    public void suppression() {
+        compteManager.supprimerCompte(this.compte);
+    }
+
+    public String update() {
+        System.out.println("###UPDATE###");
+
+        return "listeComptes";
+    }
+
+    public String showDetails(long compteId) {
+        return "CompteDetails?id=" + compteId;
+    }
 
     public Compte getCompte() {
         return compte;
@@ -111,7 +124,6 @@ public String showDetails(long compteId) {
     public void setMontant(int montant) {
         this.montant = montant;
     }
-
 
     public String getTypeDeCompte() {
         return typeDeCompte;
@@ -144,7 +156,5 @@ public String showDetails(long compteId) {
     public void setClient(Client client) {
         this.client = client;
     }
-
-
 
 }

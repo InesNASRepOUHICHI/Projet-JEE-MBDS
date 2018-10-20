@@ -58,6 +58,10 @@ public class InitDbBean {
         clientProprietaire.setEmail("ines@gmail.com");
         clientProprietaire.setPassword("ines");
         
+        Conseiller conseiller = new Conseiller("DECHAMPS", "Maxime", "0492626262", "Nice CARRAS", "Homme", "maxime@gmail.com", "maxime", Role.CONSEILLER);
+        conseiller.setAdministrateur(new Administrateur("admin", "admin", "04432315", "Magnan", "Femme", "admin", "admin", Role.ADMIN));
+        clientProprietaire.setConseiller(conseiller);
+        
         List<Client> proprietairesComptes = new ArrayList<>();
         proprietairesComptes.add(clientProprietaire);
         

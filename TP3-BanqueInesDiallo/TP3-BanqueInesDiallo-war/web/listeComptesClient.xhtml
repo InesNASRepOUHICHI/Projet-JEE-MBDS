@@ -13,7 +13,7 @@
             <ui:define name="content"> 
                 <h:form>
                     <h1><h:outputText value="List"/></h1>
-                    <p:dataTable id="tbl" value="#{compteMBean.comptes}" var="item"  widgetVar="compteTable"  
+                    <p:dataTable id="tbl" value="#{compteMBean.comptesClient}" var="item"  widgetVar="compteTable"  
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                  paginator="true" rows="10"  style="min-width: 100px">
 

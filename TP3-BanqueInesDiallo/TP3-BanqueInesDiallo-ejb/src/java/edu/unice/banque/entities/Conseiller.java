@@ -6,8 +6,11 @@
 package edu.unice.banque.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -18,10 +21,10 @@ import javax.persistence.OneToMany;
 @Entity
 public class Conseiller extends Personnee implements Serializable {
 
-    @OneToMany
-    private List<Client> listeClients;
+    @OneToMany(cascade={CascadeType.ALL}, fetch= FetchType.EAGER)
+    private List<Client> listeClients = new ArrayList<Client>();
     
-    @ManyToOne
+    @ManyToOne(cascade={CascadeType.ALL}, fetch= FetchType.EAGER)
     private Administrateur administrateur;
 
     public Conseiller() {
