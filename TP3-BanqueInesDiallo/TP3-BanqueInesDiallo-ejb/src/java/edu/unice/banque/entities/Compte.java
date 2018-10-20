@@ -45,6 +45,7 @@ public class Compte implements Serializable {
    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Long numeroCompte;
+    private Long numero;
     private double solde;
     
     @ManyToMany(cascade={CascadeType.ALL}, fetch= FetchType.EAGER)

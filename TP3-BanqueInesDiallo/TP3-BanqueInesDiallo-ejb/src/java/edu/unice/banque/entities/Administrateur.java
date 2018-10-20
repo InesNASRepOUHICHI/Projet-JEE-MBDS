@@ -22,12 +22,18 @@ public class Administrateur extends Personnee implements Serializable {
 
     public Administrateur() {
     }
-
+    
     
     public Administrateur(List<Conseiller> listeConseillers) {
         this.listeConseillers = listeConseillers;
     }
 
+    public Administrateur(String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
+        super(nom, prenom, numeroTelephone, adresse, sexe, email, password, role);
+    }
+    
+    
+  
     public Administrateur(List<Conseiller> listeConseillers, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
         super(nom, prenom, numeroTelephone, adresse, sexe, email, password, role);
         this.listeConseillers = listeConseillers;
@@ -37,6 +43,8 @@ public class Administrateur extends Personnee implements Serializable {
         super(id, nom, prenom, numeroTelephone, adresse, sexe, email, password, role);
         this.listeConseillers = listeConseillers;
     }
+
+ 
 
     public List<Conseiller> getListeConseillers() {
         return listeConseillers;

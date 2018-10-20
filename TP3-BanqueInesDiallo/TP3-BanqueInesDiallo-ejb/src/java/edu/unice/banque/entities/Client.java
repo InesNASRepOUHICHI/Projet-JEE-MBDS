@@ -6,9 +6,11 @@
 package edu.unice.banque.entities;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
@@ -21,7 +23,9 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class Client extends Personnee implements Serializable  {
-    private boolean estCoProprietaire;
+    
+   
+    private int estCoProprietaire;
     
     @ManyToMany
     private List<Compte> listComptes;
@@ -35,14 +39,14 @@ public class Client extends Personnee implements Serializable  {
     public Client() {
     }
 
-    public Client(boolean estCoProprietaire, List<Compte> listComptes, Conseiller conseiller, List<Operation> listeOperations) {
+    public Client(int estCoProprietaire, List<Compte> listComptes, Conseiller conseiller, List<Operation> listeOperations) {
         this.estCoProprietaire = estCoProprietaire;
         this.listComptes = listComptes;
         this.conseiller = conseiller;
         this.listeOperations = listeOperations;
     }
 
-    public Client(boolean estCoProprietaire, List<Compte> listComptes, Conseiller conseiller, List<Operation> listeOperations, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
+    public Client(int estCoProprietaire, List<Compte> listComptes, Conseiller conseiller, List<Operation> listeOperations, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
         super(nom, prenom, numeroTelephone, adresse, sexe, email, password, role);
         this.estCoProprietaire = estCoProprietaire;
         this.listComptes = listComptes;
@@ -50,7 +54,7 @@ public class Client extends Personnee implements Serializable  {
         this.listeOperations = listeOperations;
     }
 
-    public Client(boolean estCoProprietaire, List<Compte> listComptes, Conseiller conseiller, List<Operation> listeOperations, Long id, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
+    public Client(int estCoProprietaire, List<Compte> listComptes, Conseiller conseiller, List<Operation> listeOperations, Long id, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
         super(id, nom, prenom, numeroTelephone, adresse, sexe, email, password, role);
         this.estCoProprietaire = estCoProprietaire;
         this.listComptes = listComptes;
@@ -58,13 +62,15 @@ public class Client extends Personnee implements Serializable  {
         this.listeOperations = listeOperations;
     }
 
+
+
    
 
-    public boolean isEstCoProprietaire() {
+    public int isEstCoProprietaire() {
         return estCoProprietaire;
     }
 
-    public void setEstCoProprietaire(boolean estCoProprietaire) {
+    public void setEstCoProprietaire(int estCoProprietaire) {
         this.estCoProprietaire = estCoProprietaire;
     }
 
@@ -118,15 +124,18 @@ public class Client extends Personnee implements Serializable  {
         return "Client{" + "estCoProprietaire=" + estCoProprietaire + ", listComptes=" + listComptes + ", conseiller=" + conseiller + ", listeOperations=" + listeOperations + '}';
     }
 
+    public int getEstCoProprietaire() {
+        return estCoProprietaire;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + (this.estCoProprietaire ? 1 : 0);
-        hash = 97 * hash + Objects.hashCode(this.listComptes);
-        hash = 97 * hash + Objects.hashCode(this.conseiller);
-        hash = 97 * hash + Objects.hashCode(this.listeOperations);
+        int hash = 5;
+        hash = 59 * hash + this.estCoProprietaire;
         return hash;
     }
+
+   
 
    
 }
