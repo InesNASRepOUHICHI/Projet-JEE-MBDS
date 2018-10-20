@@ -6,7 +6,7 @@
 package managedBeans;
 
 import edu.unice.banque.entities.Client;
-import edu.unice.banque.session.GestionnaireDeClient;
+import edu.unice.banque.session.GestionnaireClientBean;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -23,7 +23,7 @@ import javax.faces.view.ViewScoped;
 public class ClientMBean implements Serializable {
 
     @EJB
-    private GestionnaireDeClient clientManager;
+    private GestionnaireClientBean clientManager;
      private Client client ;
     /**
      * Creates a new instance of ClientMBean

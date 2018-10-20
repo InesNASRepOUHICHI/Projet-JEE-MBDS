@@ -1,29 +1,34 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
- <html xmlns="http://www.w3.org/1999/xhtml"  
-                xmlns:ui="http://java.sun.com/jsf/facelets"  
-                xmlns:h="http://java.sun.com/jsf/html" 
-                 xmlns:p="http://primefaces.org/ui"
-                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                template="./template_default.xhtml"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" >
+        <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="/css/default.css"/>
+        <h:outputStylesheet name="/css/cssLayout.css"/>
+        <title>Gestion des comptes bancaires </title>
+    </h:head>
+    <h:body>
+        <div id="top" class="top">
+            <ui:insert name="top">
+                <h1 class="title"><span>Gestion des comptes bancaires </span></h1>
+                <p:graphicImage name="images/mbds.jpg"/>
 
-    <body>
-
-<h:form>            
-  
-        <h:panelGrid columns="2" cellpadding="5">
-            <h:outputLabel for="username" value="Username:" />
-            <p:inputText id="username" value="#{userLoginView.username}" required="true" label="username" />
- 
-            <h:outputLabel for="password" value="Password:" />
-            <p:password id="password" value="#{userLoginView.password}" required="true" label="password" />
- 
-            <f:facet name="footer">
-                <p:commandButton value="Login"  actionListener="#{userLoginView.login}"
-                                 oncomplete="handleLoginRequest(xhr, status, args)" />
-            </f:facet>  
-        </h:panelGrid>
-</h:form>
-
-    </body>
-</html>
+            </ui:insert>
+        </div>
+        <div id="login" align="center">
+        <b>#{userLogin.message}</b> <br/><br/>
+        <h:form id="loginForm">
+            <h:panelGrid columns="3">
+                <h:outputLabel value="Email: " />
+                <h:inputText value="#{userLogin.email}" /> <br />
+                <h:outputLabel value="Password:" />
+                <h:inputSecret value="#{userLogin.password}"></h:inputSecret><br/>
+                <h:commandButton value="Submit" action="#{userLogin.login}"></h:commandButton>
+            </h:panelGrid>
+        </h:form>
+        </div>
+    </h:body>
+</html> 

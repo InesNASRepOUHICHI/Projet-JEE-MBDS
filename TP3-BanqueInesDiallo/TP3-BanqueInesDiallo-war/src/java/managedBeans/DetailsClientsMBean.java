@@ -6,7 +6,7 @@
 package managedBeans;
 
 import edu.unice.banque.entities.Client;
-import edu.unice.banque.session.GestionnaireDeClient;
+import edu.unice.banque.session.GestionnaireClientBean;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -23,7 +23,7 @@ public class DetailsClientsMBean implements Serializable{
     private Client client;
 
     @EJB
-    private GestionnaireDeClient clientManager;
+    private GestionnaireClientBean clientManager;
 
     /**
      * Creates a new instance of detailsClients
@@ -53,20 +53,14 @@ public class DetailsClientsMBean implements Serializable{
         this.client = client;
     }
 
-    public GestionnaireDeClient getClientManager() {
-        return clientManager;
-    }
 
-    public void setClientManager(GestionnaireDeClient clientManager) {
-        this.clientManager = clientManager;
-    }
     
     
     public void load() {  
       this.client = clientManager.findClientByID(id);
    }
     public String update() { 
-     clientManager.update(client);
+     clientManager.updateClient(client);
      return "listeDesClients?faces-redirect=true";  
   }  
   
@@ -79,3 +73,4 @@ public class DetailsClientsMBean implements Serializable{
     
     
 }
+

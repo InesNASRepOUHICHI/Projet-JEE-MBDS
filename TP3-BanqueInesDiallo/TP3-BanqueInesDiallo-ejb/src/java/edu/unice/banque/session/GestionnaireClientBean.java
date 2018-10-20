@@ -21,17 +21,18 @@ import javax.persistence.Query;
  */
 @Stateless
 @LocalBean
-public class GestionnaireDeClient {
+public class GestionnaireClientBean {
+    
+    final String Query_Select_All_Clients = "SELECT c FROM Client c";
+    final String Query_Select_Client_By_Email = "SELECT c FROM Client c where c.email =:email";
+    final String Query_Select_Client_By_Name = "SELECT c FROM client c WHERE c.nom =:nom";
 
     @PersistenceContext(unitName = "TP3-BanqueInesDiallo-ejbPU")
     private EntityManager em;
 
-    public void persist(Object object) {
-        em.persist(object);
-    }
 
     public List<Client> getAllClient() {
-        Query query = em.createQuery("SELECT c FROM Client c");
+        Query query = em.createQuery(Query_Select_All_Clients);
         return query.getResultList();
     }
 
@@ -43,8 +44,21 @@ public class GestionnaireDeClient {
         return em.find(Client.class, id);
     }
 
+    public Client findClientByEmail(String email) {
+        Query query = em.createQuery(Query_Select_Client_By_Email);
+        query.setParameter("email", email);
+        try {
+            return (Client) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        } catch (NonUniqueResultException en) {
+            List<Client> clients = (List<Client>) query.getResultList();
+            return clients.get(0);
+        }
+    }
+    
     public Client findClientByName(String nom) {
-        Query query = em.createQuery("SELECT c FROM client c WHERE c.nom =:nom");
+        Query query = em.createQuery(Query_Select_Client_By_Name);
         query.setParameter("nom", nom);
         try {
             return (Client) query.getSingleResult();
@@ -52,18 +66,18 @@ public class GestionnaireDeClient {
             return null;
         } catch (NonUniqueResultException en) {
             List<Client> clients = (List<Client>) query.getResultList();
-
             return clients.get(0);
         }
     }
+    
+     public Client updateClient(Client client) {
+        return em.merge(client);
+    }
+
 
     public String showDetails(int id) {
         System.out.println("dans show");
         return "detailsClient?id=" + id;
-    }
-
-    public void update(Client client) {
-        em.merge(client);
-    }
+    }  
 
 }
