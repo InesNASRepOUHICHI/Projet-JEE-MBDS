@@ -15,15 +15,18 @@
  <ui:composition template="./WEB-INF/template/template.xhtml">
             <ui:define name="content">
                 <f:view>
+                    <b>#{compteMBean.message}</b> <br/><br/>
                     <h:form>
                              <p:panel id="panel" header="Effectuer une opération" >  
                                     <h:outputText value="Le solde actuel : "/>
                                     <h:outputText value="#{compteMBean.compte.solde}">
                                         <f:convertNumber currencySymbol="€" groupingUsed="#{true}" maxFractionDigits="3" type="currency"/>
                                     </h:outputText>
+                                    
+                                    <br/><br/>
                                 
                                     <h:outputLabel value="Opération : " for="operation" />
-                                    <p:selectOneMenu id="op" required="true" value="#{compteMBean.operation.type}" >
+                                    <p:selectOneMenu id="operation" required="true" value="#{compteMBean.operation.type}" >
                                         <f:selectItem id="VERSEMENT" itemLabel="VERSEMENT" itemValue="VERSEMENT" />
                                         <f:selectItem id="RETRAIT" itemLabel="RETRAIT" itemValue="RETRAIT" />
                                         <f:selectItem id="VIREMENT" itemLabel="VIREMENT" itemValue="VIREMENT" />
@@ -39,7 +42,7 @@
                   
                              </p:panel>
                         <h:panelGrid columns="2">
-                            <p:commandButton action='#{compteMBean.creerOperation()}'
+                            <p:commandButton action='#{compteMBean.creerOperation}'
                                          value="Céer opération"/>
                         <p:commandButton type="reset" value="Annuler" />    
                         </h:panelGrid>
