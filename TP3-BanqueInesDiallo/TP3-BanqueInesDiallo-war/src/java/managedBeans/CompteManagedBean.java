@@ -93,8 +93,10 @@ public class CompteManagedBean implements Serializable {
         return "Monrtant retiré";
     }
 
-    public void suppression() {
-        compteManager.supprimerCompte(this.compte);
+      public String supprimerCompte(Compte compte) {
+       compteManager.supprimerCompte(compte);
+       
+        return "listeComptesClient?faces-redirect=true";
     }
 
     public String update() {

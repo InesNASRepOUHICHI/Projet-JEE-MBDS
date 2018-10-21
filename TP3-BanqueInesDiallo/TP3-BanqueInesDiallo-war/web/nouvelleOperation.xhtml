@@ -7,26 +7,21 @@
       xmlns:p="http://primefaces.org/ui">
 
     <body>
-        <ui:composition template="./DefaultTemplate.xhtml">
+ <ui:composition template="./WEB-INF/template/template.xhtml">
             <ui:define name="content">
                 <f:view>
                     <h:form>
                              <p:panel id="panel" header="Effectuer une opération" style="margin-bottom:10px;">  
         
-                                  Opérations sur le compte n° #{compteBean.compte.id} de #{compteBean.compte.client.nom} #{compteBean.compte.client.prenom} 
+                                  Opérations sur le compte n° #{compteMBean.compte.id} de #{compteMBean.compte.client.nom} #{compteMBean.compte.client.prenom} 
 
-                            <br/>
-                            <br/>
-                            <p:messages id="messages" /> 
-                   
-                               
                                     <h:outputText value="Le solde actuel : "/>
-                                    <h:outputText value="#{compteBean.compte.solde}">
+                                    <h:outputText value="#{compteMBean.compte.solde}">
                                         <f:convertNumber currencySymbol="€" groupingUsed="#{true}" maxFractionDigits="3" type="currency"/>
                                     </h:outputText>
                                 
                                     <h:outputLabel value="Opération : " for="operation" />
-                                    <p:selectOneMenu id="op" value="#{compteBean.op}"  required="true" >
+                                    <p:selectOneMenu id="op" value="#{compteMBean.op}"  required="true" >
                                         <f:selectItem id="debit" itemLabel="Débit" itemValue="0" />
                                         <f:selectItem id="credit" itemLabel="Crédit" itemValue="1" />
                                     </p:selectOneMenu>
@@ -35,7 +30,7 @@
                                
                                     <h:outputLabel value="Montant :" for="montant"/>
                                                                         
-                                    <p:spinner id="montant" value="#{compteBean.montant}" prefix="€" 
+                                    <p:spinner id="montant" value="#{compteMBean.montant}" prefix="€" 
                                                requiredMessage="Veuillez saisir le montant" required="true" min="0"/>  
                                 
                   

@@ -6,6 +6,7 @@
 package edu.unice.banque.session;
 
 import edu.unice.banque.entities.Administrateur;
+import edu.unice.banque.entities.Conseiller;
 import edu.unice.banque.entities.Role;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -21,13 +22,15 @@ import javax.persistence.Query;
 @Stateless
 @LocalBean
 public class GestionnaireAdministrateurBean {
-    
+
     final String Query_Select_All_Administrateurs = "SELECT a FROM Administrateur a";
+    // final String Query_Select_All_Conseillers = "SELECT c FROM Conseiller c where c.administrateur_id = : id";
+    final String Query_Select_All_Conseillers = "SELECT c FROM Conseiller c ";
 
     @PersistenceContext(unitName = "TP3-BanqueInesDiallo-ejbPU")
     private EntityManager em;
-    
-     public List<Administrateur> getAllAdministrateur() {
+
+    public List<Administrateur> getAllAdministrateur() {
         Query query = em.createQuery(Query_Select_All_Administrateurs);
         return query.getResultList();
     }
@@ -40,6 +43,13 @@ public class GestionnaireAdministrateurBean {
         return em.find(Administrateur.class, id);
     }
 
-    
+    public List<Conseiller> getAllConseiller() {
+        Query query = em.createQuery(Query_Select_All_Conseillers);
+        //query.setParameter("administrateur_id", id);
+        return query.getResultList();
+    }
 
+    public void supprimerConseiller(Conseiller conseiller) {
+        em.remove(em.merge(conseiller));
+    }
 }

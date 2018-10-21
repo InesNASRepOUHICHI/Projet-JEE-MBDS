@@ -68,12 +68,14 @@
                                     <p:commandButton action="#{compteBean.operation(item)}" icon="ui-icon-pencil"/>                                  
                                 </p:column>
                             
-                                <p:column headerText="Suppression" >
-                                    <p:commandLink oncomplete="deleteDlg.show();">
-                                        <h:panelGroup styleClass="ui-icon ui-icon-trash" />
-                                        <f:setPropertyActionListener value="#{item}" target="#{compteBean.compte}" />
-                                    </p:commandLink>                 
-                                </p:column>      
+                               <p:column headerText="Suppression" >
+                            <p:commandLink action="#{compteMBean.supprimerCompte(item)}"
+                                           title="Supprimer le compte de #{item.numeroCompte}" 
+                                           onclick="if (!confirm('OK pour suppression ?'))
+                                           return false;">
+                                <h:panelGroup styleClass="ui-icon ui-icon-trash" />
+                            </p:commandLink>                 
+                        </p:column>         
                     </p:dataTable>
                     <h3>Exporter la page courante seulement</h3>
 <!--                    <h:commandLink>
