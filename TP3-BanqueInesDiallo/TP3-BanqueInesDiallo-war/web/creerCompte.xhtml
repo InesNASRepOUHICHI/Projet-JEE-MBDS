@@ -15,14 +15,15 @@
             <ui:define name="content">
                 <f:view>
                     <h:form>
-                           <h:outputLabel value="Type:" for="type" />
+                          
+                        <h1><h:outputText value="Create/Edit"/></h1>
+                        <h:panelGrid columns="3">
+                             <h:outputLabel value="Type:" for="type" />
                             <p:selectOneMenu id="type" value="#{compteMBean.typeDeCompte}" style="width:150px" >
                                 <f:selectItem itemLabel="Compte courant" itemValue="CC" noSelectionOption="false" />
                                 <f:selectItem itemLabel="Compte épargne" itemValue="CE" noSelectionOption="false" />    
                                 <f:ajax render="@form" />
                             </p:selectOneMenu><br/>     
-                        <h1><h:outputText value="Create/Edit"/></h1>
-                        <h:panelGrid columns="3">
                             <h:outputLabel value="Numéro:" for="numero" />
                             <p:inputText id="numero" value="#{compteMBean.compte.numeroCompte}" 
                                          title="Numéro" 
