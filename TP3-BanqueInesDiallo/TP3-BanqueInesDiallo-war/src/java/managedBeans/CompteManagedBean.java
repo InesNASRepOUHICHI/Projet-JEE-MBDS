@@ -9,7 +9,10 @@ import edu.unice.banque.entities.Client;
 import edu.unice.banque.entities.Compte;
 import edu.unice.banque.entities.CompteCourant;
 import edu.unice.banque.entities.CompteEpargne;
+import edu.unice.banque.entities.Conseiller;
+import edu.unice.banque.entities.Operation;
 import edu.unice.banque.entities.Personnee;
+import edu.unice.banque.entities.Role;
 import edu.unice.banque.session.GestionnaireClientBean;
 import java.io.Serializable;
 import java.util.List;
@@ -18,6 +21,7 @@ import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import edu.unice.banque.session.GestionnaireCompteBean;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -35,12 +39,13 @@ public class CompteManagedBean implements Serializable {
     @EJB
     private GestionnaireClientBean clientManager;
 
+    private Long id;
     private Client client;
     private Compte compte;
     private CompteEpargne compteEpargne;
     private CompteCourant compteCourant;
 
-    private int montant = 0;
+    private Operation operation = new Operation();
     private String typeDeCompte = "CC";
 
     public CompteManagedBean() {
@@ -50,10 +55,18 @@ public class CompteManagedBean implements Serializable {
         compteCourant = new CompteCourant();
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public List<Compte> getComptes() {
         return compteManager.getComptes();
     }
-    
+
     public List<Compte> getComptesClient() {
         Personnee p = UserLoginManagedBean.personneConnectee;
         Client c = clientManager.findClientByEmail(p.getEmail());
@@ -62,7 +75,6 @@ public class CompteManagedBean implements Serializable {
 
     public String addCompte() {
         Compte compteACreer = null;
-        System.out.println(typeDeCompte);
         if (typeDeCompte.equals("CC")) {
             compteACreer = new CompteCourant(compteCourant.getMontantPret(), compteCourant.getMontantDecouvert());
         } else if (typeDeCompte.equals("CE")) {
@@ -72,39 +84,43 @@ public class CompteManagedBean implements Serializable {
         compteACreer.setSolde(compte.getSolde());
 
         List<Client> clientsProprietaires = new ArrayList<Client>();
+        Conseiller conseiller = (Conseiller) UserLoginManagedBean.personneConnectee;
+
+        client.setRole(Role.CLIENT); 
+        client.setConseiller(conseiller);
         clientsProprietaires.add(client);
         compteACreer.setListeClientsProprietaires(clientsProprietaires);
 
         compteManager.createCompte(compteACreer);
-        return "client ajouté ";
+        
+        return "listeClients";
     }
 
     public String showDetails(Long id) {
         return "detailsCompte?id=" + id;
     }
 
-    public String ajouterMontant() {
 
-        return "Montant ajouté";
+
+    public String supprimerCompte(Compte compte) {
+        compteManager.supprimerCompte(compte);
+
+        return "listeComptes?faces-redirect=true";
     }
-
-    public String retirerMontant() {
-
-        return "Monrtant retiré";
-    }
-
-      public String supprimerCompte(Compte compte) {
-       compteManager.supprimerCompte(compte);
-       
-        return "listeComptesClient?faces-redirect=true";
-    }
+ 
 
     public String update() {
-        System.out.println("###UPDATE###");
-
+        compteManager.updateCompte(compte);
         return "listeComptes";
     }
-
+    
+    public String nouvelleOperation(Long id) {
+        return "nouvelleOperation?id="+id;
+    }
+    
+    public String list() {
+        return "listeComptes";
+    }
 
     public Compte getCompte() {
         return compte;
@@ -114,13 +130,15 @@ public class CompteManagedBean implements Serializable {
         this.compte = compte;
     }
 
-    public int getMontant() {
-        return montant;
+    public Operation getOperation() {
+        return operation;
     }
 
-    public void setMontant(int montant) {
-        this.montant = montant;
+    public void setOperation(Operation operation) {
+        this.operation = operation;
     }
+
+ 
 
     public String getTypeDeCompte() {
         return typeDeCompte;
@@ -152,6 +170,27 @@ public class CompteManagedBean implements Serializable {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public void load() {
+        this.compte = compteManager.getCompte(id);
+    }
+    
+    public String creerOperation(){
+        operation.setDate(new Date());
+        compte.getListeOperations().add(operation);
+        double nouveauSolde =0;
+        if (operation.getType().toString().equals("VERSEMENT")){
+            nouveauSolde = compte.getSolde() + operation.getMontant();
+        } else if (operation.getType().toString().equals("RETRAIT")){
+            nouveauSolde = compte.getSolde() - operation.getMontant();
+        } else if (operation.getType().toString().equals("VIREMENT")){
+            nouveauSolde = compte.getSolde() - operation.getMontant();
+        }
+        System.out.println(nouveauSolde);
+        compte.setSolde(nouveauSolde);
+        compteManager.updateCompte(compte);
+        return "listeOperations";
     }
 
 }

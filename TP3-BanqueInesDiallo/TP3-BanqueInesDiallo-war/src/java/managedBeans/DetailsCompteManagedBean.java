@@ -44,6 +44,7 @@ public class DetailsCompteManagedBean implements Serializable{
     return "CompteList";  
   }  
   
+  
   /** 
    * Action handler - renvoie vers la page qui affiche la liste des clients 
    */  
