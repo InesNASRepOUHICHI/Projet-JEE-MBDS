@@ -31,7 +31,7 @@ import javax.persistence.PersistenceContext;
 public class InitDbBean {
 
     @EJB
-    private GestionnaireCompteBean gestionnaireCompteBean;
+    private GestionnaireClientBean gestionnaireClientBean;
     @EJB
     private GestionnaireAdministrateurBean gestionnaireAdministrateurBean;
     @EJB
@@ -40,7 +40,7 @@ public class InitDbBean {
     @PostConstruct
     public void initBase() {
         System.out.println("edu.unice.banque.session.InitBD.initBase()");
-        creerCompteDeTest();
+        creerClientDeTest();
         creerAministrateurs();
         creerConseillers();
         
@@ -48,10 +48,11 @@ public class InitDbBean {
 
     }
 
-    public void creerCompteDeTest() {
+    public void creerClientDeTest() {
         Client clientProprietaire = new Client();
         clientProprietaire.setNom("NASR");
         clientProprietaire.setPrenom("Ines");
+        clientProprietaire.setSexe("Femme");
         clientProprietaire.setAdresse("100, bv de la madeleine, 06000, Nice");
         clientProprietaire.setNumeroTelephone("0765326598");
         clientProprietaire.setRole(Role.CLIENT);
@@ -62,15 +63,17 @@ public class InitDbBean {
         conseiller.setAdministrateur(new Administrateur("admin", "admin", "04432315", "Magnan", "Femme", "admin", "admin", Role.ADMIN));
         clientProprietaire.setConseiller(conseiller);
         
-        List<Client> proprietairesComptes = new ArrayList<>();
-        proprietairesComptes.add(clientProprietaire);
+        
         
         Compte compte = new CompteCourant(0, 500);
         compte.setNumeroCompte(10001L);
         compte.setSolde(50000);
-        compte.setListeClientsProprietaires(proprietairesComptes);
+        List<Compte> comptes = new ArrayList<Compte>();
+        comptes.add(compte);
+        
+        clientProprietaire.setListComptes(comptes);
 
-        gestionnaireCompteBean.createCompte(compte);
+        gestionnaireClientBean.addClient(clientProprietaire);
         
 
     }
