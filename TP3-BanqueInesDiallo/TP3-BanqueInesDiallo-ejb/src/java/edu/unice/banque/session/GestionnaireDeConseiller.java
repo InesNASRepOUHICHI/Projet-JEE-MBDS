@@ -9,6 +9,7 @@ import edu.unice.banque.entities.Administrateur;
 import edu.unice.banque.entities.Client;
 import edu.unice.banque.entities.Conseiller;
 import edu.unice.banque.entities.Role;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -23,7 +24,7 @@ import javax.persistence.Query;
  */
 @Stateless
 @LocalBean
-public class GestionnaireDeConseiller {
+public class GestionnaireDeConseiller{
 
     @EJB
     private GestionnaireDeClient gestionnaireDeClient;
@@ -42,14 +43,14 @@ public class GestionnaireDeConseiller {
    public void  creerConseiller(){
         String sexe [] = {"F","M"};
         List<Administrateur> admins = gestionnaireAdministrateur.getAllAdministrateurs();
+        List<Client> clients = gestionnaireDeClient.getAllClient();
         em.persist(new Conseiller(admins.get((int)(Math.random() * admins.size())),"Lelaidier","Patrick","04532314","Liberatin",sexe[(int)(Math.random() *2)],"patrick@gmail.com","patrick",Role.CONSEILLER));    
         em.persist(new Conseiller(admins.get((int)(Math.random() * admins.size())),"Diallo", "Hasso", "04432316", "Arenas", sexe[(int)(Math.random() *2)], "hasso@gmail.com", "diallo", Role.CONSEILLER));
         em.persist(new Conseiller(admins.get((int)(Math.random() * admins.size())),"Perez", "Mari", "04438314", "Thier", sexe[(int)(Math.random() *2)], "perez@gmail.com", "perez", Role.CONSEILLER));
         em.persist(new Conseiller(admins.get((int)(Math.random() * admins.size())),"Ezaher", "Fatima", "04432399", "Moulin", sexe[(int)(Math.random() *2)], "fatima@gmail.com", "fatima", Role.CONSEILLER));
-        em.persist(new Conseiller(admins.get((int)(Math.random() * admins.size())),"Lelaidier", "Patrick", "04532314", "Liberatin", sexe[(int)(Math.random() *2)], "patrick@gmail.com", "patrick", Role.CONSEILLER));
-       
-        
-      
+        em.persist(new Conseiller(admins.get((int)(Math.random() * admins.size())),"Lelaidier", "Patrick", "04532314", "Liberatin", sexe[(int)(Math.random() *2)], "patrick@gmail.com", "patrick", Role.CONSEILLER));        
+        em.persist(new Conseiller(clients,admins.get((int)(Math.random() * admins.size())),"Lelai", "Patrick", "04532314", "Liberatin", sexe[(int)(Math.random() *2)], "patrick@gmail.com", "patrick", Role.CONSEILLER));
+             
     }
    
        public Conseiller findClientByID(Long id) {
@@ -63,7 +64,7 @@ public class GestionnaireDeConseiller {
     
      public String showDetails(int id) {
         System.out.println("dans show");
-        return "conseillerDetail?id=" + id;
+        return "conseillerDetails?id=" + id;
     }
 
     public void update(Conseiller conseiller) {
@@ -72,5 +73,10 @@ public class GestionnaireDeConseiller {
 
     public void persist(Object object) {
         em.persist(object);
+    }
+    
+    public List<Client> listClients(Long CONSEILLER_ID){
+    Query query = em.createQuery("SELECT c FROM CONSEILLER_CLIENT c where c:=CONSEILLER_ID");
+        return query.getResultList();
     }
 }

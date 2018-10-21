@@ -5,29 +5,33 @@
  */
 package managedBeans;
 
+import edu.unice.banque.entities.Client;
 import edu.unice.banque.entities.Conseiller;
 import edu.unice.banque.session.GestionnaireDeConseiller;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
+import javax.faces.view.ViewScoped;
 
 /**
  *
  * @author deptinfo
  */
-@Named(value = "conseillersDetailsMBean")
-@Dependent
-public class ConseillerDetailsMBean implements Serializable{
+@Named(value = "conseillerDeatailsMBean")
+@ViewScoped
+public class ConseillerDeatailsMBean implements Serializable{
 
     @EJB
     private GestionnaireDeConseiller gestionnaireDeConseiller;
-    
+
     private Long id;
     private Conseiller conseiller;
-    
-    public ConseillerDetailsMBean() {
+ 
+    public ConseillerDeatailsMBean() {
     }
+    
+    
     
     public void load() {  
       this.conseiller = gestionnaireDeConseiller.findClientByID(id);
@@ -42,7 +46,12 @@ public class ConseillerDetailsMBean implements Serializable{
    */  
   public String list() {  
     return "listeConseillers?faces-redirect=true";  
-  }  
+  } 
+  
+  public List<Client> listClients(){
+      return gestionnaireDeConseiller.listClients(id);
+  
+  }
 
     public GestionnaireDeConseiller getGestionnaireDeConseiller() {
         return gestionnaireDeConseiller;
@@ -67,6 +76,7 @@ public class ConseillerDetailsMBean implements Serializable{
     public void setConseiller(Conseiller conseiller) {
         this.conseiller = conseiller;
     }
+  
   
     
 }

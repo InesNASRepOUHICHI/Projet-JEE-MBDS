@@ -13,6 +13,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -31,6 +33,11 @@ public class Client extends Personnee implements Serializable  {
     private List<Compte> listComptes;
     
     @ManyToOne(cascade={CascadeType.ALL}, fetch= FetchType.EAGER)
+    @JoinTable(name="CONSEILLER_CLIENT",
+    joinColumns = @JoinColumn(name = "CONSEILLER_ID", 
+                              referencedColumnName = "id"), 
+    inverseJoinColumns = @JoinColumn(name = "LISTECLIENTS_ID", 
+                              referencedColumnName = "id"))
     private Conseiller conseiller;
     
     @OneToMany(cascade={CascadeType.ALL}, fetch= FetchType.EAGER)

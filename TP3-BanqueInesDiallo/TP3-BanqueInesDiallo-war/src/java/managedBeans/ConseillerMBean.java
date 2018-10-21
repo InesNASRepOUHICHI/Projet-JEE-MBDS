@@ -31,7 +31,8 @@ public class ConseillerMBean implements Serializable{
     }
     
     public List<Conseiller> getAllConseillers(){
-        return gestionnaireDeConseiller.getAllConseillers();
+         List<Conseiller> conseillers = gestionnaireDeConseiller.getAllConseillers();
+        return conseillers;
     }
     public String showDetails(int id) {  
        return  gestionnaireDeConseiller.showDetails(id);

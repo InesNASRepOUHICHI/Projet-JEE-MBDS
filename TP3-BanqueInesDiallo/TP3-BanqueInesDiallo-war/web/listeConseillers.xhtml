@@ -12,7 +12,7 @@
         
      <ui:composition template="./WEB-INF/template/template.xhtml">
          <ui:define name="complementTitreEtH1">Liste Des Clients</ui:define>  
-  
+         
          <ui:define name="content"> 
         <f:view>
             <h:form>
@@ -69,8 +69,16 @@
                         </f:facet>
                         <h:outputText value="#{item.email}"/>
                     </p:column> 
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Administrateur"/>
+                        </f:facet>
+                        <h:outputText value="#{item.administrateur.nom}"/>
+                    </p:column>
                 </p:dataTable>
             </h:form>
+            
+            
         </f:view>
      </ui:define>  
   </ui:composition>

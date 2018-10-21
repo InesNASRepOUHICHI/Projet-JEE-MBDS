@@ -61,6 +61,18 @@
                         </f:facet>
                         <h:outputText value="#{item.email}" />
                     </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Conseiller"/>
+                        </f:facet>
+                        <h:outputText value="#{item.conseiller.nom}"/>
+                    </p:column>
+                     <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="EstCoProprietaire"/>
+                        </f:facet>
+                        <h:outputText value="#{item.estCoProprietaire}"/>
+                    </p:column>
                 </p:dataTable>  
             </h:form>
         </f:view>

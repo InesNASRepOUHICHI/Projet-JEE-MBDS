@@ -20,16 +20,12 @@ public class Administrateur extends Personnee implements Serializable {
    
 
     @OneToMany
+    
     private List<Conseiller> listeConseillers;
 
     public Administrateur() {
     }
-    
-    
-    public Administrateur(List<Conseiller> listeConseillers) {
-        this.listeConseillers = listeConseillers;
-    }
-
+   
     public Administrateur(String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
         super(nom, prenom, numeroTelephone, adresse, sexe, email, password, role);
     }
