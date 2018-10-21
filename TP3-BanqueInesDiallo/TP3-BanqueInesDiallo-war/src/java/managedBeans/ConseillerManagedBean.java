@@ -5,8 +5,6 @@
  */
 package managedBeans;
 
-
-
 import edu.unice.banque.entities.Administrateur;
 import edu.unice.banque.entities.Conseiller;
 import edu.unice.banque.entities.Personnee;
@@ -31,37 +29,24 @@ public class ConseillerManagedBean implements Serializable {
     private GestionnaireConseillerBean conseillerManager;
     @EJB
     private GestionnaireAdministrateurBean administrateurManager;
-    private Conseiller conseiller ;
-    /**
-     * Creates a new instance of ClientManagedBean
-     * @param id
-     * @return 
-     */
-  /*   public List<Conseiller> getConseillers() {  
-      Personnee p = UserLoginManagedBean.personneConnectee;
-       Administrateur a = administrateurManager. findAdministrateurByID(p.getId());
-        return a.getListeConseillers();
-    }  */
-     public List<Conseiller> getConseillers() {
+    private Conseiller conseiller;
+
+    public List<Conseiller> getConseillers() {
         return administrateurManager.getAllConseiller();
     }
-     public String addConseiller(){
-     Personnee p = UserLoginManagedBean.personneConnectee;
-     conseiller.setAdministrateur((Administrateur)p);
-     conseillerManager.addConseiller(conseiller);
-     return "listeConseillers?faces-redirect=true";
- 
-     }
 
-   
+    public String addConseiller() {
+        Personnee p = UserLoginManagedBean.personneConnectee;
+        conseiller.setAdministrateur((Administrateur) p);
+        conseillerManager.addConseiller(conseiller);
+        return "listeConseillers?faces-redirect=true";
+
+    }
+
     public ConseillerManagedBean() {
-      conseiller= new Conseiller();
+        conseiller = new Conseiller();
     }
-/*
-    public Conseiller showDetails(Long id) {  
-       return  conseillerManager.findConseillerByID(id);
-    }
-*/
+
     public GestionnaireConseillerBean getConseillerManager() {
         return conseillerManager;
     }
@@ -77,6 +62,5 @@ public class ConseillerManagedBean implements Serializable {
     public void setConseiller(Conseiller conseiller) {
         this.conseiller = conseiller;
     }
-    
-    
+
 }

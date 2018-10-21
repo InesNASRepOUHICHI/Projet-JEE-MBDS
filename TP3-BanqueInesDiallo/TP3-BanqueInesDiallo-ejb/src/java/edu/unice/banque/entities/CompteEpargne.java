@@ -15,10 +15,11 @@ import javax.persistence.Entity;
  */
 @Entity
 @DiscriminatorValue("COMPTE_EPARGNE")
-public class CompteEpargne extends  Compte implements Serializable {
- private double taux;
- private double maxEpargne;
- private double minEpargne;
+public class CompteEpargne extends Compte implements Serializable {
+
+    private double taux;
+    private double maxEpargne;
+    private double minEpargne;
 
     public CompteEpargne() {
     }
@@ -28,8 +29,6 @@ public class CompteEpargne extends  Compte implements Serializable {
         this.maxEpargne = maxEpargne;
         this.minEpargne = minEpargne;
     }
-
-  
 
     public double getTaux() {
         return taux;
@@ -59,7 +58,5 @@ public class CompteEpargne extends  Compte implements Serializable {
     public String toString() {
         return "CompteEpargne{" + "taux=" + taux + ", maxEpargne=" + maxEpargne + ", minEpargne=" + minEpargne + '}';
     }
- 
-   
-    
+
 }

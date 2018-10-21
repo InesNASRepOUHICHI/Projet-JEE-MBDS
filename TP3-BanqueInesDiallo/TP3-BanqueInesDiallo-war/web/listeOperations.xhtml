@@ -18,25 +18,11 @@
                                  paginator="true" rows="10"  style="min-width: 100px">
 
                         <f:facet name="{Exporters}">
-<!--                            <h:commandLink>
-                                <p:graphicImage name="images/excel.png" width="24"/>
-                                <p:dataExporter type="xls" target="tbl" fileName="Comptes" />
-                            </h:commandLink>
-
-                            <h:commandLink>
-                                <p:graphicImage name="images/pdf.png" width="24"/>
-                                <p:dataExporter type="pdf" target="tbl" fileName="Comptes"/>
-                            </h:commandLink>-->
 
                             <h:commandLink>
                                 <p:graphicImage name="images/csv.png" width="24"/>
                                 <p:dataExporter type="csv" target="tbl" fileName="Comptes" />
                             </h:commandLink>
-<!--
-                            <h:commandLink>
-                                <p:graphicImage name="images/xml.png" width="24"/>
-                                <p:dataExporter type="xml" target="tbl" fileName="Comptes" />
-                            </h:commandLink>-->
                         </f:facet>
 
                         <f:facet name="header">    
@@ -50,7 +36,7 @@
                                   sortBy="#{item.id}"  
                                   filterBy="#{item.id}"  
                                   filterMatchMode="contains">
-                          
+
                             <h:link outcome="#{operationManagedBean.showDetails(item.id)}" value="#{item.id}"/>    
 
                         </p:column>
@@ -60,40 +46,27 @@
                             </f:facet>
                             <h:outputText value="#{item.type}"/>
                         </p:column>
-                         <p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Date"/>
                             </f:facet>
-                             <h:outputText value="#{item.date}"/>
+                            <h:outputText value="#{item.date}"/>
                         </p:column>
-                         <p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Montant"/>
                             </f:facet>
-                             <h:outputText value="#{item.montant}"/>
+                            <h:outputText value="#{item.montant}"/>
                         </p:column>
-                          
+
                     </p:dataTable>
                     <h3>Exporter la page courante seulement</h3>
-<!--                    <h:commandLink>
-                        <p:graphicImage name="images/excel.png" />
-                        <p:dataExporter type="xls" target="tbl" fileName="Comptes" pageOnly="true"/>
-                    </h:commandLink>-->
-
-<!--                    <h:commandLink>
-                        <p:graphicImage name="images/pdf.png" />
-                        <p:dataExporter type="pdf" target="tbl" fileName="Comptes" pageOnly="true" />
-                    </h:commandLink>-->
 
                     <h:commandLink>
                         <p:graphicImage name="images/csv.png" />
                         <p:dataExporter type="csv" target="tbl" fileName="Comptes" pageOnly="true" />
                     </h:commandLink>
 
-<!--                    <h:commandLink>
-                        <p:graphicImage name="images/xml.png" />
-                        <p:dataExporter type="xml" target="tbl" fileName="Comptes" pageOnly="true" />
-                    </h:commandLink>-->
                 </h:form>
             </ui:define>  
         </ui:composition>

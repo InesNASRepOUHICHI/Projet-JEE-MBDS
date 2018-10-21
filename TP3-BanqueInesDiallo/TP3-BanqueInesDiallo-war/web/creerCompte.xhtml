@@ -15,10 +15,10 @@
             <ui:define name="content">
                 <f:view>
                     <h:form>
-                          
+
                         <h1><h:outputText value="Create/Edit"/></h1>
                         <h:panelGrid columns="3">
-                             <h:outputLabel value="Type:" for="type" />
+                            <h:outputLabel value="Type:" for="type" />
                             <p:selectOneMenu id="type" value="#{compteMBean.typeDeCompte}" style="width:150px" >
                                 <f:selectItem itemLabel="Compte courant" itemValue="CC" noSelectionOption="false" />
                                 <f:selectItem itemLabel="Compte épargne" itemValue="CE" noSelectionOption="false" />    
@@ -34,7 +34,7 @@
                                          title="Solde" 
                                          required="true"
                                          converterMessage="Le solde doit être un  nombre entier"/><br/>
-                         
+
 
 
 
@@ -43,32 +43,32 @@
                         <h:panelGroup rendered="#{compteMBean.typeDeCompte == 'CC'}">
                             <h1><h:outputText value="Détails du Compte Courant"/></h1>
                             <h:panelGrid columns="3">
-                            <h:outputLabel value="Découvert:" for="decouvert" />
-                            <p:inputText id="decouvert" value="#{compteMBean.compteCourant.montantDecouvert}" 
-                                         title="Découvert" 
-                                         required="true"/><br/>
-                            <h:outputLabel value="Pret:" for="pret" />
-                            <p:inputText id="pret" value="#{compteMBean.compteCourant.montantPret}" 
-                                         title="Pret" 
-                                         required="true"/><br/>
+                                <h:outputLabel value="Découvert:" for="decouvert" />
+                                <p:inputText id="decouvert" value="#{compteMBean.compteCourant.montantDecouvert}" 
+                                             title="Découvert" 
+                                             required="true"/><br/>
+                                <h:outputLabel value="Pret:" for="pret" />
+                                <p:inputText id="pret" value="#{compteMBean.compteCourant.montantPret}" 
+                                             title="Pret" 
+                                             required="true"/><br/>
                             </h:panelGrid>
                         </h:panelGroup><br/>
 
                         <h:panelGroup rendered="#{compteMBean.typeDeCompte == 'CE'}">
                             <h1><h:outputText value="Détails du Compte Epargne"/></h1>
                             <h:panelGrid columns="3">
-                            <h:outputLabel value="Taux:" for="taux" />
-                            <p:inputText id="taux" value="#{compteMBean.compteEpargne.taux}" 
-                                         title="Taux" 
-                                         required="true"/><br/>
-                            <h:outputLabel value="Max Epargne:" for="maxEpargne" />
-                            <p:inputText id="maxEpargne" value="#{compteMBean.compteEpargne.maxEpargne}" 
-                                         title="maxEpargne" 
-                                         required="true"/><br/>
-                            <h:outputLabel value="Min Epargne:" for="minEpargne" />
-                            <p:inputText id="minEpargne" value="#{compteMBean.compteEpargne.minEpargne}" 
-                                         title="minEpargne" 
-                                         required="true"/><br/>
+                                <h:outputLabel value="Taux:" for="taux" />
+                                <p:inputText id="taux" value="#{compteMBean.compteEpargne.taux}" 
+                                             title="Taux" 
+                                             required="true"/><br/>
+                                <h:outputLabel value="Max Epargne:" for="maxEpargne" />
+                                <p:inputText id="maxEpargne" value="#{compteMBean.compteEpargne.maxEpargne}" 
+                                             title="maxEpargne" 
+                                             required="true"/><br/>
+                                <h:outputLabel value="Min Epargne:" for="minEpargne" />
+                                <p:inputText id="minEpargne" value="#{compteMBean.compteEpargne.minEpargne}" 
+                                             title="minEpargne" 
+                                             required="true"/><br/>
                             </h:panelGrid>
                         </h:panelGroup><br/>
 

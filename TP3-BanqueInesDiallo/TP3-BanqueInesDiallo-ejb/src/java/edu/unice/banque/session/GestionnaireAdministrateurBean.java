@@ -45,7 +45,6 @@ public class GestionnaireAdministrateurBean {
 
     public List<Conseiller> getAllConseiller() {
         Query query = em.createQuery(Query_Select_All_Conseillers);
-        //query.setParameter("administrateur_id", id);
         return query.getResultList();
     }
 

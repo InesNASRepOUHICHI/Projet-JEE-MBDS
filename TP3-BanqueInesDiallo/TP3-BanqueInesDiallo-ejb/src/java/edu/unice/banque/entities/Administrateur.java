@@ -22,7 +22,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Administrateur extends Personnee implements Serializable {
 
-    @OneToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE}, fetch= FetchType.LAZY)
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinTable(name = "administrateur_conseiller",
             joinColumns = @JoinColumn(name = "administrateur_id"),
             inverseJoinColumns = @JoinColumn(name = "conseiller_id"))
@@ -30,8 +30,7 @@ public class Administrateur extends Personnee implements Serializable {
 
     public Administrateur() {
     }
-    
-    
+
     public Administrateur(List<Conseiller> listeConseillers) {
         this.listeConseillers = listeConseillers;
     }
@@ -39,9 +38,7 @@ public class Administrateur extends Personnee implements Serializable {
     public Administrateur(String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
         super(nom, prenom, numeroTelephone, adresse, sexe, email, password, role);
     }
-    
-    
-  
+
     public Administrateur(List<Conseiller> listeConseillers, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
         super(nom, prenom, numeroTelephone, adresse, sexe, email, password, role);
         this.listeConseillers = listeConseillers;
@@ -51,8 +48,6 @@ public class Administrateur extends Personnee implements Serializable {
         super(id, nom, prenom, numeroTelephone, adresse, sexe, email, password, role);
         this.listeConseillers = listeConseillers;
     }
-
- 
 
     public List<Conseiller> getListeConseillers() {
         return listeConseillers;
@@ -66,6 +61,5 @@ public class Administrateur extends Personnee implements Serializable {
     public String toString() {
         return "Administrateur{" + "listeConseillers=" + listeConseillers + '}';
     }
-    
-    
+
 }

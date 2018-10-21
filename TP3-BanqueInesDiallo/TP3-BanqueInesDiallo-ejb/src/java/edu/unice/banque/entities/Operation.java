@@ -38,8 +38,6 @@ public class Operation implements Serializable {
         this.date = date;
         this.montant = montant;
     }
-    
-    
 
     public Long getId() {
         return id;

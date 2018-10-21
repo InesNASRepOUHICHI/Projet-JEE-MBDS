@@ -18,25 +18,11 @@
                                  paginator="true" rows="10"  style="min-width: 100px">
 
                         <f:facet name="{Exporters}">
-                            <!--                            <h:commandLink>
-                                                            <p:graphicImage name="images/excel.png" width="24"/>
-                                                            <p:dataExporter type="xls" target="tbl" fileName="Comptes" />
-                                                        </h:commandLink>
-                            
-                                                        <h:commandLink>
-                                                            <p:graphicImage name="images/pdf.png" width="24"/>
-                                                            <p:dataExporter type="pdf" target="tbl" fileName="Comptes"/>
-                                                        </h:commandLink>-->
 
                             <h:commandLink>
                                 <p:graphicImage name="images/csv.png" width="24"/>
                                 <p:dataExporter type="csv" target="tbl" fileName="Comptes" />
                             </h:commandLink>
-                            <!--
-                                                        <h:commandLink>
-                                                            <p:graphicImage name="images/xml.png" width="24"/>
-                                                            <p:dataExporter type="xml" target="tbl" fileName="Comptes" />
-                                                        </h:commandLink>-->
                         </f:facet>
 
                         <f:facet name="header">    
@@ -60,34 +46,20 @@
                             </f:facet>
                             <h:outputText value="#{item.solde}"/>
                         </p:column>
-                       
+
 
                         <p:column headerText="Effectuer Opérations">
-                           <h:link outcome="#{compteMBean.nouvelleOperation(item.id)}" value="Nouvelle opération"/>       
+                            <h:link outcome="#{compteMBean.nouvelleOperation(item.id)}" value="Nouvelle opération"/>       
 
                         </p:column>
 
                     </p:dataTable>
                     <h3>Exporter la page courante seulement</h3>
-                    <!--                    <h:commandLink>
-                                            <p:graphicImage name="images/excel.png" />
-                                            <p:dataExporter type="xls" target="tbl" fileName="Comptes" pageOnly="true"/>
-                                        </h:commandLink>-->
-
-                    <!--                    <h:commandLink>
-                                            <p:graphicImage name="images/pdf.png" />
-                                            <p:dataExporter type="pdf" target="tbl" fileName="Comptes" pageOnly="true" />
-                                        </h:commandLink>-->
 
                     <h:commandLink>
                         <p:graphicImage name="images/csv.png" />
                         <p:dataExporter type="csv" target="tbl" fileName="Comptes" pageOnly="true" />
                     </h:commandLink>
-
-                    <!--                    <h:commandLink>
-                                            <p:graphicImage name="images/xml.png" />
-                                            <p:dataExporter type="xml" target="tbl" fileName="Comptes" pageOnly="true" />
-                                        </h:commandLink>-->
                 </h:form>
             </ui:define>  
         </ui:composition>
