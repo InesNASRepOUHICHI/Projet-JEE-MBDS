@@ -21,11 +21,15 @@
         <div id="top" class="top">
             <ui:insert name="top">
                 <h1 class="title"><span>Gestion des comptes bancaires </span></h1>
-                <p:graphicImage name="images/mbds.jpg"/>
+                <p:graphicImage name="images/mbds.jpg" />
                 <div align="right">
-                    
+
                     <h2>Bienvenue #{userLogin.personneConnectee.prenom}  #{userLogin.personneConnectee.nom}</h2>
                     <h2>Vous etes connecté en tant que #{userLogin.personneConnectee.role}</h2>
+
+                    <p:commandLink action="/index">
+                        <h:graphicImage name="images/logout.png" />
+                    </p:commandLink>
                 </div>
 
             </ui:insert>

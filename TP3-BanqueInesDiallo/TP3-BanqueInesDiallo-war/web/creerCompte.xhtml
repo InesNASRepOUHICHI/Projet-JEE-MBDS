@@ -15,6 +15,12 @@
             <ui:define name="content">
                 <f:view>
                     <h:form>
+                           <h:outputLabel value="Type:" for="type" />
+                            <p:selectOneMenu id="typeCompte" value="#{compteMBean.typeDeCompte}" style="width:150px" >
+                                <f:selectItem itemLabel="Compte courant" itemValue="CC" noSelectionOption="false" />
+                                <f:selectItem itemLabel="Compte épargne" itemValue="CE" noSelectionOption="false" />    
+                                <f:ajax render="@form" />
+                            </p:selectOneMenu><br/>     
                         <h1><h:outputText value="Create/Edit"/></h1>
                         <h:panelGrid columns="3">
                             <h:outputLabel value="Numéro:" for="numero" />
@@ -27,12 +33,7 @@
                                          title="Solde" 
                                          required="true"
                                          converterMessage="Le solde doit être un  nombre entier"/><br/>
-                            <h:outputLabel value="Type:" for="type" />
-                            <p:selectOneMenu id="typeCompte" value="#{compteMBean.typeDeCompte}" style="width:150px" >
-                                <f:selectItem itemLabel="Compte courant" itemValue="CC" noSelectionOption="false" />
-                                <f:selectItem itemLabel="Compte épargne" itemValue="CE" noSelectionOption="false" />    
-                                <f:ajax render="@form" />
-                            </p:selectOneMenu><br/>
+                         
 
 
 

@@ -44,8 +44,7 @@ public class GestionnaireCompteBean {
     }
     
 
-    public void supprimerCompte(Compte compte) {
-        em.remove(compte);
-    }
-
+   public void supprimerCompte(Compte compte) {
+    em.remove(em.merge(compte));
+ }
 }
