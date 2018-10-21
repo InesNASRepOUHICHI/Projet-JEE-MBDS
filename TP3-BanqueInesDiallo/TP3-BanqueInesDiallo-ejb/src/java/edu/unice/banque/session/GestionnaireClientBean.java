@@ -75,8 +75,6 @@ public class GestionnaireClientBean {
         return em.merge(client);
     }
 
-    public String showDetails(int id) {
-        return "detailsClient?id=" + id;
-    }
+  
 
 }

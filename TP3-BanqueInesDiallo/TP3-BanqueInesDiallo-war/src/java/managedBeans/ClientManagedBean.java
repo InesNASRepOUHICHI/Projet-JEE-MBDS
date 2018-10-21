@@ -51,7 +51,7 @@ public class ClientManagedBean implements Serializable {
     }
     
     public String showDetails(int id) {  
-       return  clientManager.showDetails(id);
+       return "detailsClient?id=" + id;
     }
-    
+
 }

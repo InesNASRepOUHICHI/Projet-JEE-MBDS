@@ -27,7 +27,7 @@ public class GestionnaireCompteBean {
     private EntityManager em;
 
     public void createCompte(Compte compte) {
-        em.persist(compte);
+        em.merge(compte);
     }
 
     public Compte updateCompte(Compte compte) {
@@ -47,4 +47,5 @@ public class GestionnaireCompteBean {
    public void supprimerCompte(Compte compte) {
     em.remove(em.merge(compte));
  }
+
 }

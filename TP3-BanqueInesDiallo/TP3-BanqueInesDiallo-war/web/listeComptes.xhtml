@@ -60,19 +60,12 @@
                             </f:facet>
                             <h:outputText value="#{item.solde}"/>
                         </p:column>
-                        <p:column headerText="Historique">
-                            <p:commandButton action="#{compteBean.showDetails(item)}" icon="ui-icon-search"/>                                  
-                        </p:column>
-
-                        <p:column headerText="Opérations">
-                            <p:commandButton action="#{compteBean.operation(item)}" icon="ui-icon-pencil"/>                                  
-                        </p:column>
 
                         <p:column headerText="Suppression" >
                             <p:commandLink action="#{compteMBean.supprimerCompte(item)}"
-                                           title="Supprimer le compte de #{item.nom}" 
+                                           title="Supprimer le compte de #{item.numeroCompte}" 
                                            onclick="if (!confirm('OK pour suppression ?'))
-                                           return false;">
+                                                       return false;">
                                 <h:panelGroup styleClass="ui-icon ui-icon-trash" />
                             </p:commandLink>                 
                         </p:column>      

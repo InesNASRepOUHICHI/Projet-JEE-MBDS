@@ -5,39 +5,43 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
+    <f:metadata>  
+        <f:viewParam name="id" value="#{compteMBean.id}"
+                     required="true"/>  
+        <f:viewAction action="#{compteMBean.load()}"/>  
+    </f:metadata>
 
     <body>
  <ui:composition template="./WEB-INF/template/template.xhtml">
             <ui:define name="content">
                 <f:view>
                     <h:form>
-                             <p:panel id="panel" header="Effectuer une opération" style="margin-bottom:10px;">  
-        
-                                  Opérations sur le compte n° #{compteMBean.compte.id} de #{compteMBean.compte.client.nom} #{compteMBean.compte.client.prenom} 
-
+                             <p:panel id="panel" header="Effectuer une opération" >  
                                     <h:outputText value="Le solde actuel : "/>
                                     <h:outputText value="#{compteMBean.compte.solde}">
                                         <f:convertNumber currencySymbol="€" groupingUsed="#{true}" maxFractionDigits="3" type="currency"/>
                                     </h:outputText>
                                 
                                     <h:outputLabel value="Opération : " for="operation" />
-                                    <p:selectOneMenu id="op" value="#{compteMBean.op}"  required="true" >
-                                        <f:selectItem id="debit" itemLabel="Débit" itemValue="0" />
-                                        <f:selectItem id="credit" itemLabel="Crédit" itemValue="1" />
+                                    <p:selectOneMenu id="op" required="true" value="#{compteMBean.operation.type}" >
+                                        <f:selectItem id="VERSEMENT" itemLabel="VERSEMENT" itemValue="VERSEMENT" />
+                                        <f:selectItem id="RETRAIT" itemLabel="RETRAIT" itemValue="RETRAIT" />
+                                        <f:selectItem id="VIREMENT" itemLabel="VIREMENT" itemValue="VIREMENT" />
                                     </p:selectOneMenu>
                              
                              
                                
                                     <h:outputLabel value="Montant :" for="montant"/>
                                                                         
-                                    <p:spinner id="montant" value="#{compteMBean.montant}" prefix="€" 
+                                    <p:spinner id="montant" value="#{compteMBean.operation.montant}" prefix="€" 
                                                requiredMessage="Veuillez saisir le montant" required="true" min="0"/>  
                                 
                   
                              </p:panel>
                         <h:panelGrid columns="2">
-                            <p:commandButton id="valider" value="Valider" action="#{compteBean.operationType}"/>
-                            <p:commandButton id="back" value="Retour" action="#{compteBean.list()}"/>    
+                            <p:commandButton action='#{compteMBean.creerOperation()}'
+                                         value="Céer opération"/>
+                        <p:commandButton type="reset" value="Annuler" />    
                         </h:panelGrid>
                     </h:form>
                 </f:view> 
