@@ -187,7 +187,6 @@ public class CompteManagedBean implements Serializable {
         } else if (operation.getType().toString().equals("VIREMENT")){
             nouveauSolde = compte.getSolde() - operation.getMontant();
         }
-        System.out.println(nouveauSolde);
         compte.setSolde(nouveauSolde);
         compteManager.updateCompte(compte);
         return "listeOperations";
