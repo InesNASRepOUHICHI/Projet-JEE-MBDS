@@ -25,26 +25,21 @@ public class Operation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String type;
-     @Temporal(javax.persistence.TemporalType.DATE)
+    private TypeOperation type;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date date;
     private double montant;
 
     public Operation() {
     }
 
-    public Operation(String type, Date date, double montant) {
+    public Operation(TypeOperation type, Date date, double montant) {
         this.type = type;
         this.date = date;
         this.montant = montant;
     }
-
-    public Operation(Long id, String type, Date date, double montant) {
-        this.id = id;
-        this.type = type;
-        this.date = date;
-        this.montant = montant;
-    }
+    
+    
 
     public Long getId() {
         return id;
@@ -52,14 +47,6 @@ public class Operation implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public Date getDate() {
@@ -118,6 +105,21 @@ public class Operation implements Serializable {
     @Override
     public String toString() {
         return "Operation{" + "id=" + id + ", type=" + type + ", date=" + date + ", montant=" + montant + '}';
-    }   
-    
+    }
+
+    public Operation(Long id, TypeOperation type, Date date, double montant) {
+        this.id = id;
+        this.type = type;
+        this.date = date;
+        this.montant = montant;
+    }
+
+    public TypeOperation getType() {
+        return type;
+    }
+
+    public void setType(TypeOperation type) {
+        this.type = type;
+    }
+
 }

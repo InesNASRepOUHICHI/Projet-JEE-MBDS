@@ -22,14 +22,13 @@ import javax.persistence.Query;
 @Stateless
 @LocalBean
 public class GestionnaireClientBean {
-    
+
     final String Query_Select_All_Clients = "SELECT c FROM Client c";
     final String Query_Select_Client_By_Email = "SELECT c FROM Client c where c.email =:email";
     final String Query_Select_Client_By_Name = "SELECT c FROM client c WHERE c.nom =:nom";
 
     @PersistenceContext(unitName = "TP3-BanqueInesDiallo-ejbPU")
     private EntityManager em;
-
 
     public List<Client> getAllClient() {
         Query query = em.createQuery(Query_Select_All_Clients);
@@ -50,13 +49,15 @@ public class GestionnaireClientBean {
         try {
             return (Client) query.getSingleResult();
         } catch (NoResultException e) {
+            System.out.println(e.toString());
             return null;
         } catch (NonUniqueResultException en) {
+            System.out.println(en.toString());
             List<Client> clients = (List<Client>) query.getResultList();
             return clients.get(0);
         }
     }
-    
+
     public Client findClientByName(String nom) {
         Query query = em.createQuery(Query_Select_Client_By_Name);
         query.setParameter("nom", nom);
@@ -69,15 +70,13 @@ public class GestionnaireClientBean {
             return clients.get(0);
         }
     }
-    
-     public Client updateClient(Client client) {
+
+    public Client updateClient(Client client) {
         return em.merge(client);
     }
 
-
     public String showDetails(int id) {
-        System.out.println("dans show");
         return "detailsClient?id=" + id;
-    }  
+    }
 
 }

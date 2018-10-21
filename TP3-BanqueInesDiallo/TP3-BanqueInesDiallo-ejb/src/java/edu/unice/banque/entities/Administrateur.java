@@ -6,8 +6,13 @@
 package edu.unice.banque.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
 /**
@@ -17,8 +22,11 @@ import javax.persistence.OneToMany;
 @Entity
 public class Administrateur extends Personnee implements Serializable {
 
-    @OneToMany
-    private List<Conseiller> listeConseillers;
+    @OneToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE}, fetch= FetchType.LAZY)
+    @JoinTable(name = "administrateur_conseiller",
+            joinColumns = @JoinColumn(name = "administrateur_id"),
+            inverseJoinColumns = @JoinColumn(name = "conseiller_id"))
+    private List<Conseiller> listeConseillers = new ArrayList<Conseiller>();
 
     public Administrateur() {
     }

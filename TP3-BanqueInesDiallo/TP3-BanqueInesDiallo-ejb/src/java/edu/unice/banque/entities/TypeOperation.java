@@ -10,19 +10,19 @@ package edu.unice.banque.entities;
  * @author INES NASR
  */
 public enum TypeOperation {
-    
+
     VIREMENT("VIREMENT"),
     VERSEMENT("VERSEMENT"),
     RETRAIT("RETRAIT");
- 
+
     private final String typeOperation;
- 
+
     TypeOperation(String typeOp) {
         this.typeOperation = typeOp;
     }
- 
+
     public String gettypeOperation() {
         return typeOperation;
     }
-    
+
 }

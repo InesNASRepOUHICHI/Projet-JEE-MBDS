@@ -6,16 +6,15 @@
 package edu.unice.banque.entities;
 
 import java.io.Serializable;
-import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 /**
  *
@@ -27,15 +26,16 @@ public class Client extends Personnee implements Serializable  {
    
     private int estCoProprietaire;
     
-    @ManyToMany
-    private List<Compte> listComptes;
+    @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE}, fetch= FetchType.EAGER)
+    @JoinTable(name = "client_compte",
+            joinColumns = @JoinColumn(name = "client_id"),
+            inverseJoinColumns = @JoinColumn(name = "compte_id")
+    )
+    private List<Compte> listComptes = new ArrayList<Compte>();
     
-    @ManyToOne(cascade={CascadeType.ALL}, fetch= FetchType.EAGER)
+    @ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE}, fetch= FetchType.LAZY)
     private Conseiller conseiller;
     
-    @OneToMany(cascade={CascadeType.ALL}, fetch= FetchType.EAGER)
-    private List<Operation> listeOperations;
-
     public Client() {
     }
 
@@ -43,7 +43,6 @@ public class Client extends Personnee implements Serializable  {
         this.estCoProprietaire = estCoProprietaire;
         this.listComptes = listComptes;
         this.conseiller = conseiller;
-        this.listeOperations = listeOperations;
     }
 
     public Client(int estCoProprietaire, List<Compte> listComptes, Conseiller conseiller, List<Operation> listeOperations, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
@@ -51,7 +50,6 @@ public class Client extends Personnee implements Serializable  {
         this.estCoProprietaire = estCoProprietaire;
         this.listComptes = listComptes;
         this.conseiller = conseiller;
-        this.listeOperations = listeOperations;
     }
 
     public Client(int estCoProprietaire, List<Compte> listComptes, Conseiller conseiller, List<Operation> listeOperations, Long id, String nom, String prenom, String numeroTelephone, String adresse, String sexe, String email, String password, Role role) {
@@ -59,7 +57,6 @@ public class Client extends Personnee implements Serializable  {
         this.estCoProprietaire = estCoProprietaire;
         this.listComptes = listComptes;
         this.conseiller = conseiller;
-        this.listeOperations = listeOperations;
     }
 
 
@@ -91,15 +88,6 @@ public class Client extends Personnee implements Serializable  {
     public void setConseiller(Conseiller conseiller) {
         this.conseiller = conseiller;
     }
-
-    public List<Operation> getListeOperations() {
-        return listeOperations;
-    }
-
-    public void setListeOperations(List<Operation> listeOperations) {
-        this.listeOperations = listeOperations;
-    }
-
     
     @Override
     public boolean equals(Object obj) {
@@ -121,8 +109,12 @@ public class Client extends Personnee implements Serializable  {
 
     @Override
     public String toString() {
-        return "Client{" + "estCoProprietaire=" + estCoProprietaire + ", listComptes=" + listComptes + ", conseiller=" + conseiller + ", listeOperations=" + listeOperations + '}';
+        return super.toString() + "Client{" + "estCoProprietaire=" + estCoProprietaire + ", listComptes=" + listComptes + ", conseiller=" + conseiller + '}';
     }
+
+   
+
+    
 
     public int getEstCoProprietaire() {
         return estCoProprietaire;

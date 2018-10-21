@@ -18,7 +18,8 @@ import javax.persistence.InheritanceType;
  *
  * @author INES NASR
  */
-@Entity @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS) 
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Personnee implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -188,6 +189,4 @@ public class Personnee implements Serializable {
         return "Personne{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", numeroTelephone=" + numeroTelephone + ", adresse=" + adresse + ", sexe=" + sexe + ", email=" + email + ", password=" + password + ", role=" + role + '}';
     }
 
-   
-      
 }

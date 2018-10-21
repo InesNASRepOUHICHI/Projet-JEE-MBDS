@@ -6,8 +6,13 @@
 package edu.unice.banque.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -18,16 +23,17 @@ import javax.persistence.OneToMany;
 @Entity
 public class Conseiller extends Personnee implements Serializable {
 
-    @OneToMany
-    private List<Client> listeClients;
-    
-    @ManyToOne
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinTable(name = "conseiller_client",
+            joinColumns = @JoinColumn(name = "conseiller_id"),
+            inverseJoinColumns = @JoinColumn(name = "client_id"))
+    private List<Client> listeClients = new ArrayList<Client>();
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private Administrateur administrateur;
 
     public Conseiller() {
     }
-    
-    
 
     public Conseiller(List<Client> listeClients, Administrateur administrateur) {
         this.listeClients = listeClients;
@@ -50,8 +56,6 @@ public class Conseiller extends Personnee implements Serializable {
         super(nom, prenom, numeroTelephone, adresse, sexe, email, password, role);
     }
 
-   
-
     public List<Client> getListeClients() {
         return listeClients;
     }
@@ -72,8 +76,5 @@ public class Conseiller extends Personnee implements Serializable {
     public String toString() {
         return "Conseiller{" + "listeClients=" + listeClients + ", administrateur=" + administrateur + '}';
     }
-    
-    
-    
-    
+
 }

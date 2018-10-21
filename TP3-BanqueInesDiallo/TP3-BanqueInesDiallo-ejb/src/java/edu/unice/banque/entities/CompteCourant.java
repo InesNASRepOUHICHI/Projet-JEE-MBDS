@@ -6,34 +6,29 @@
 package edu.unice.banque.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /**
  *
  * @author deptinfo
  */
-@Entity 
+@Entity
 @DiscriminatorValue("COMPTE_COURANT")
 public class CompteCourant extends Compte implements Serializable {
+
     private double montantPret;
     private double montantDecouvert;
+
     public CompteCourant() {
-        
+
     }
 
-    
-    
     public CompteCourant(double montantPret, double montantDecouvert) {
         this.montantPret = montantPret;
         this.montantDecouvert = montantDecouvert;
     }
 
-    
     public double getMontantPret() {
         return montantPret;
     }
@@ -50,9 +45,4 @@ public class CompteCourant extends Compte implements Serializable {
         this.montantDecouvert = montantDecouvert;
     }
 
-   
-    
-    
 }
-
-  
