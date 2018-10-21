@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./WEB-INF/template/template.xhtml">
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form>
+                        <p:panel header="Historique du compte">
+                            Historique du compte n° #{compteBean.compte.id} de #{compteBean.compte.client.nom} #{compteBean.compte.client.prenom} 
+
+                            <br/>
+                            <br/>
+                        <p:dataTable value="#{compteBean.operations}" var="item" paginator="true" rows="5" lazy="true" 
+                                             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"  
+                                             rowsPerPageTemplate="5,10,15"
+                                             emptyMessage="Aucune opération banquaire trouvée"
+                                             >
+                             <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Description"/>
+                                </f:facet>
+                                <h:outputText value="#{item.description}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Date de l'opération"/>
+                                </f:facet>
+                                <h:outputText value="#{item.dateOperation}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Montant"/>
+                                </f:facet>
+                                
+                                 <h:outputText value="#{item.montant}">
+                                            <f:convertNumber currencySymbol="€" groupingUsed="#{true}" maxFractionDigits="2" type="currency"/>
+                                 </h:outputText>        
+                            </p:column>
+                           
+                        </p:dataTable>
+                        </p:panel>
+                        
+                        <h:panelGrid columns="1">
+                        <p:commandButton id="back" value="Retour" action="#{compteBean.list()}"/> 
+                        </h:panelGrid>
+                        
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
