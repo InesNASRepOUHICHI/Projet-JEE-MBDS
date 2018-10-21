@@ -1,10 +1,10 @@
 # Projet JEE - Gestion des comptes bancaires
 
 
-Projet réalisé par **Ines NASR** et **Hawaou  DIALLO** pour l'unité d'enseignement "Composantes  Distribués  pour  l’Entreprise  (J2EE) " du master 2 MBDS 2018-2019.
+Projet réalisé par **Ines NASR** et **Hawaou  DIALLO** pour l'unité d'enseignement "Composantes  Distribués  pour  l’Entreprise  (J2EE)" du master 2 MBDS 2018-2019.
 Ce projet est encadré par **Mr Michel BUFFA**
 
-Sujet : [réaliser  une  application  en  J2EE  de  gestion  de  comptes  bancaires](https://www.dropbox.com/sh/3ipivnnedcvdpya/AAAz22U5GdXXDqvX9vDdIPi1a?dl=0&preview=mini_projet.pdf)
+**Sujet :** [réaliser  une  application  en  J2EE  de  gestion  de  comptes  bancaires](https://www.dropbox.com/sh/3ipivnnedcvdpya/AAAz22U5GdXXDqvX9vDdIPi1a?dl=0&preview=mini_projet.pdf)
 
 **Description:**
 Ce  mini  projet  s’inscrit  dans  la  suite  du  TP3dans  lequel  vous  devez  compléter  l’application  en  y  ajoutant  des  fonctionnalités  jugées  utiles.
@@ -19,7 +19,7 @@ Les  fonctionnalités  à  développer  doivent  incluent,  mais  ne  se  limite
  - Gestionde  comptes:création,  connexion,  gestion  de  rôles  
  
 **Contraintes:**
- - Utilisertousles  types  de  relations  vus  en  cours: 1  à  1,  1  à  n  et  mà  n  
+ - Utilisertousles  types  de  relations  vus  en  cours: 1  à  1,  1  à  n  et  m à  n  
  - Utiliser  Primefaces  pour  la  création  des  interfaces,  exploiter  les  fonctions  de  filtrages,  d’ordonnancements, d’exports  en  pdf  et/ou  csv-Utiliser  deux  types  de  session  beans  
  - Utiliser  au  moins  deux  types  de  scope  dans  les  backend  bean 
 
@@ -43,4 +43,17 @@ Pour la réalisation de notre projet nous avons implémenté trois types de rôl
 
 
 
+**Utilisation / Déploiement:**
 
+ - Importer le projet sur Netbeans;
+ - Créer une base de donnéé mySQL nommée **sample**;
+ - Déployer le sur un serveur full-profile (GlassFish, JBoss...);
+ - Exécuter le projet;
+ - Tester les différentes fonctionnalités (Vous avez 3 comptes de départ décrits ci-dessus)
+
+
+
+ 
+ 
+ 
+ 
