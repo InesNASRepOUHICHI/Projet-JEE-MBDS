@@ -24,23 +24,22 @@ public class ClientManagedBean implements Serializable {
 
     @EJB
     private GestionnaireClientBean clientManager;
-     private Client client ;
+    private Client client;
+
     /**
      * Creates a new instance of ClientManagedBean
      */
-     public List<Client> getClients() {  
-         return clientManager.getAllClient();
-    }  
-     public String addClient(){
-         clientManager.addClient(client);
-         return "client ajouté ";
-     }
-    
-   
-    public ClientManagedBean() {
+    public List<Client> getClients() {
+        return clientManager.getAllClient();
     }
 
-  
+    public String addClient() {
+        clientManager.addClient(client);
+        return "client ajouté ";
+    }
+
+    public ClientManagedBean() {
+    }
 
     public Client getClient() {
         return client;
@@ -49,9 +48,9 @@ public class ClientManagedBean implements Serializable {
     public void setClient(Client client) {
         this.client = client;
     }
-    
-    public String showDetails(int id) {  
-       return "detailsClient?id=" + id;
+
+    public String showDetails(int id) {
+        return "detailsClient?id=" + id;
     }
 
 }

@@ -64,8 +64,6 @@ public class Compte implements Serializable {
         this.listeOperations = listeOperations;
     }
 
-    
-    
     public double getSolde() {
         return solde;
     }

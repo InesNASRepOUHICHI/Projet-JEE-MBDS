@@ -21,21 +21,20 @@ import javax.persistence.ManyToOne;
  * @author INES NASR
  */
 @Entity
-public class Client extends Personnee implements Serializable  {
-    
-   
+public class Client extends Personnee implements Serializable {
+
     private int estCoProprietaire;
-    
-    @ManyToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE}, fetch= FetchType.EAGER)
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(name = "client_compte",
             joinColumns = @JoinColumn(name = "client_id"),
             inverseJoinColumns = @JoinColumn(name = "compte_id")
     )
     private List<Compte> listComptes = new ArrayList<Compte>();
-    
-    @ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE}, fetch= FetchType.LAZY)
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private Conseiller conseiller;
-    
+
     public Client() {
     }
 
@@ -59,10 +58,6 @@ public class Client extends Personnee implements Serializable  {
         this.conseiller = conseiller;
     }
 
-
-
-   
-
     public int isEstCoProprietaire() {
         return estCoProprietaire;
     }
@@ -79,8 +74,6 @@ public class Client extends Personnee implements Serializable  {
         this.listComptes = listComptes;
     }
 
- 
-
     public Conseiller getConseiller() {
         return conseiller;
     }
@@ -88,7 +81,7 @@ public class Client extends Personnee implements Serializable  {
     public void setConseiller(Conseiller conseiller) {
         this.conseiller = conseiller;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -112,10 +105,6 @@ public class Client extends Personnee implements Serializable  {
         return super.toString() + "Client{" + "estCoProprietaire=" + estCoProprietaire + ", listComptes=" + listComptes + ", conseiller=" + conseiller + '}';
     }
 
-   
-
-    
-
     public int getEstCoProprietaire() {
         return estCoProprietaire;
     }
@@ -127,7 +116,4 @@ public class Client extends Personnee implements Serializable  {
         return hash;
     }
 
-   
-
-   
 }

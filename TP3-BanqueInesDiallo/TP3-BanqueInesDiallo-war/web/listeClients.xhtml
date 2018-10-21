@@ -9,70 +9,70 @@
         <title>Liste des clients </title>
     </h:head>
     <h:body>
-        
-      <ui:composition template="./WEB-INF/template/template.xhtml">
-        <ui:define name="complementTitreEtH1">Liste Des Clients</ui:define>  
-  
-    <ui:define name="content"> 
-   
-        <f:view>
-            <h:form>
-                <h1><h:outputText value="List des clients "/></h1>
-                <p:dataTable value="#{clientMBean.clients}" var="item"  paginator="true"  rows="5" >
-                    <p:column headerText="id"
-                              sortBy="#{item.id}"  
-                              filterBy="#{item.id}"  
-                              filterMatchMode="contains">
-                        <h:link outcome="#{clientMBean.showDetails(item.id)}" value="#{item.id}"/>    
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nom"/>
-                        </f:facet>
-                        <h:outputText value="#{item.nom}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Prenom"/>
-                        </f:facet>
-                        <h:outputText value="#{item.prenom}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="NumeroTelephone"/>
-                        </f:facet>
-                        <h:outputText value="#{item.numeroTelephone}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Adresse"/>
-                        </f:facet>
-                        <h:outputText value="#{item.adresse}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Sexe"/>
-                        </f:facet>
-                        <h:outputText value="#{item.sexe}"/>
-                    </p:column>
-                    <p:column >
-                        <f:facet name="header">
-                            <h:outputText value="Email"/>
-                        </f:facet>
-                        <h:outputText value="#{item.email}" />
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Role"/>
-                        </f:facet>
-                        <h:outputText value="#{item.role}"/>
-                    </p:column>
-                    
-                </p:dataTable>  
-            </h:form>
-        </f:view>
-</ui:define>  
-               </ui:composition>
+
+        <ui:composition template="./WEB-INF/template/template.xhtml">
+            <ui:define name="complementTitreEtH1">Liste Des Clients</ui:define>  
+
+            <ui:define name="content"> 
+
+                <f:view>
+                    <h:form>
+                        <h1><h:outputText value="List des clients "/></h1>
+                        <p:dataTable value="#{clientMBean.clients}" var="item"  paginator="true"  rows="5" >
+                            <p:column headerText="id"
+                                      sortBy="#{item.id}"  
+                                      filterBy="#{item.id}"  
+                                      filterMatchMode="contains">
+                                <h:link outcome="#{clientMBean.showDetails(item.id)}" value="#{item.id}"/>    
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nom"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nom}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Prenom"/>
+                                </f:facet>
+                                <h:outputText value="#{item.prenom}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="NumeroTelephone"/>
+                                </f:facet>
+                                <h:outputText value="#{item.numeroTelephone}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Adresse"/>
+                                </f:facet>
+                                <h:outputText value="#{item.adresse}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Sexe"/>
+                                </f:facet>
+                                <h:outputText value="#{item.sexe}"/>
+                            </p:column>
+                            <p:column >
+                                <f:facet name="header">
+                                    <h:outputText value="Email"/>
+                                </f:facet>
+                                <h:outputText value="#{item.email}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Role"/>
+                                </f:facet>
+                                <h:outputText value="#{item.role}"/>
+                            </p:column>
+
+                        </p:dataTable>  
+                    </h:form>
+                </f:view>
+            </ui:define>  
+        </ui:composition>
     </h:body>
 </html>
 

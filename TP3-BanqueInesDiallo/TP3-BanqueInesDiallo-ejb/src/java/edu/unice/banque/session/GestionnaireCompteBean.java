@@ -42,10 +42,9 @@ public class GestionnaireCompteBean {
         TypedQuery<Compte> query = em.createQuery(Query_Select_All_Comptes, Compte.class);
         return query.getResultList();
     }
-    
 
-   public void supprimerCompte(Compte compte) {
-    em.remove(em.merge(compte));
- }
+    public void supprimerCompte(Compte compte) {
+        em.remove(em.merge(compte));
+    }
 
 }

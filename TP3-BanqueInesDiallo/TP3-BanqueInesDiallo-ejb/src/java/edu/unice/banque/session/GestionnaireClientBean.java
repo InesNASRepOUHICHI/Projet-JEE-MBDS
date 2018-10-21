@@ -75,6 +75,4 @@ public class GestionnaireClientBean {
         return em.merge(client);
     }
 
-  
-
 }

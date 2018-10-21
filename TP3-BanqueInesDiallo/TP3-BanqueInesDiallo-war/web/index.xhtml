@@ -4,7 +4,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui" >
-        <h:head>
+    <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="/css/default.css"/>
         <h:outputStylesheet name="/css/cssLayout.css"/>
@@ -19,16 +19,16 @@
             </ui:insert>
         </div>
         <div id="login" align="center">
-        <b>#{userLogin.message}</b> <br/><br/>
-        <h:form id="loginForm">
-            <h:panelGrid columns="3">
-                <h:outputLabel value="Email: " />
-                <h:inputText value="#{userLogin.email}" /> <br />
-                <h:outputLabel value="Password:" />
-                <h:inputSecret value="#{userLogin.password}"></h:inputSecret><br/>
-                <h:commandButton value="Submit" action="#{userLogin.login}"></h:commandButton>
-            </h:panelGrid>
-        </h:form>
+            <b>#{userLogin.message}</b> <br/><br/>
+            <h:form id="loginForm">
+                <h:panelGrid columns="3">
+                    <h:outputLabel value="Email: " />
+                    <h:inputText value="#{userLogin.email}" /> <br />
+                    <h:outputLabel value="Password:" />
+                    <h:inputSecret value="#{userLogin.password}"></h:inputSecret><br/>
+                    <h:commandButton value="Submit" action="#{userLogin.login}"></h:commandButton>
+                </h:panelGrid>
+            </h:form>
         </div>
     </h:body>
 </html> 

@@ -42,7 +42,6 @@ public class GestionnaireOperationBean {
         TypedQuery<Operation> query = em.createQuery(Query_Select_All_Operations, Operation.class);
         return query.getResultList();
     }
-    
 
     public void supprimerOperation(Operation operation) {
         em.remove(operation);

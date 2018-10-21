@@ -19,44 +19,32 @@ import javax.faces.view.ViewScoped;
  */
 @Named(value = "compteDetailsMBean")
 @ViewScoped
-public class DetailsCompteManagedBean implements Serializable{
+public class DetailsCompteManagedBean implements Serializable {
 
     @EJB
-  private GestionnaireCompteBean gestionnaireDeCompteBancaire;
-  private Long id;  
-  private Compte compte; 
-    /**
-     * Creates a new instance of DetailsCompteManagedBean
-     */
-  
-  
-   public Compte getDetails() {  
-    return compte;  
-  }  
-  
-  /** 
-   * Action handler - met à jour la base de données en fonction du client passé 
-   * en paramètres, et renvoie vers la page qui affiche la liste des clients. 
-   */  
-  public String update() {  
-    System.out.println("###UPDATE###");  
-    compte = gestionnaireDeCompteBancaire.updateCompte(compte);  
-    return "CompteList";  
-  }  
-  
-  
-  /** 
-   * Action handler - renvoie vers la page qui affiche la liste des clients 
-   */  
-  public String list() {  
-    System.out.println("###LIST###");  
-    return "CompteList";  
-  }  
-  
-  public void loadCompte() {  
-    this.compte = gestionnaireDeCompteBancaire.getCompte(id);  
-  }  
-  
+    private GestionnaireCompteBean gestionnaireDeCompteBancaire;
+    private Long id;
+    private Compte compte;
+
+    public Compte getDetails() {
+        return compte;
+    }
+
+    public String update() {
+        System.out.println("###UPDATE###");
+        compte = gestionnaireDeCompteBancaire.updateCompte(compte);
+        return "CompteList";
+    }
+
+    public String list() {
+        System.out.println("###LIST###");
+        return "CompteList";
+    }
+
+    public void loadCompte() {
+        this.compte = gestionnaireDeCompteBancaire.getCompte(id);
+    }
+
     public DetailsCompteManagedBean() {
     }
 
@@ -84,7 +72,4 @@ public class DetailsCompteManagedBean implements Serializable{
         this.compte = compte;
     }
 
-  
-  
-    
 }

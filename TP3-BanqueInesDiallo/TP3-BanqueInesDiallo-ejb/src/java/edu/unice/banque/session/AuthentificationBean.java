@@ -23,8 +23,8 @@ public class AuthentificationBean {
 
     @PersistenceContext(unitName = "TP3-BanqueInesDiallo-ejbPU")
     private EntityManager em;
-    
-     public Role authentification(String email, String password) {
+
+    public Role authentification(String email, String password) {
         Query query = em.createQuery("SELECT p FROM Personnee p WHERE p.email =:email and p.password =:password");
         query.setParameter("email", email);
         query.setParameter("password", password);
@@ -32,19 +32,19 @@ public class AuthentificationBean {
             Personnee p = (Personnee) query.getSingleResult();
             return p.getRole();
         } catch (Exception ex) {
-             return Role.UNDEFINED;
+            return Role.UNDEFINED;
         }
     }
-     
-       public Personnee getPersonneParEmail(String email) {
+
+    public Personnee getPersonneParEmail(String email) {
         Query query = em.createQuery("SELECT p FROM Personnee p WHERE p.email =:email");
         query.setParameter("email", email);
         try {
             Personnee p = (Personnee) query.getSingleResult();
             return p;
         } catch (Exception ex) {
-             return null;
+            return null;
         }
     }
-    
+
 }

@@ -14,7 +14,7 @@ import javax.faces.view.ViewScoped;
 
 /**
  *
- * @author deptinfo
+ * @author INES NASR
  */
 @Named(value = "detailsClients")
 @ViewScoped

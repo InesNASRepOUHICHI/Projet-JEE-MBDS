@@ -6,21 +6,17 @@
 package managedBeans;
 
 import edu.unice.banque.entities.Client;
-import edu.unice.banque.entities.Compte;
 import edu.unice.banque.entities.Operation;
 import edu.unice.banque.entities.Personnee;
 import edu.unice.banque.session.GestionnaireClientBean;
-import edu.unice.banque.session.GestionnaireCompteBean;
 import edu.unice.banque.session.GestionnaireOperationBean;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 
 import javax.faces.view.ViewScoped;
-import org.apache.jasper.tagplugins.jstl.ForEach;
 
 /**
  *

@@ -18,42 +18,42 @@
 
                             <br/>
                             <br/>
-                        <p:dataTable value="#{compteBean.operations}" var="item" paginator="true" rows="5" lazy="true" 
-                                             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"  
-                                             rowsPerPageTemplate="5,10,15"
-                                             emptyMessage="Aucune opération banquaire trouvée"
-                                             >
-                             <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Description"/>
-                                </f:facet>
-                                <h:outputText value="#{item.description}"/>
-                            </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Date de l'opération"/>
-                                </f:facet>
-                                <h:outputText value="#{item.dateOperation}">
-                                    <f:convertDateTime pattern="MM/dd/yyyy" />
-                                </h:outputText>
-                            </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Montant"/>
-                                </f:facet>
-                                
-                                 <h:outputText value="#{item.montant}">
-                                            <f:convertNumber currencySymbol="€" groupingUsed="#{true}" maxFractionDigits="2" type="currency"/>
-                                 </h:outputText>        
-                            </p:column>
-                           
-                        </p:dataTable>
+                            <p:dataTable value="#{compteBean.operations}" var="item" paginator="true" rows="5" lazy="true" 
+                                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"  
+                                         rowsPerPageTemplate="5,10,15"
+                                         emptyMessage="Aucune opération banquaire trouvée"
+                                         >
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Description"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.description}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Date de l'opération"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dateOperation}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Montant"/>
+                                    </f:facet>
+
+                                    <h:outputText value="#{item.montant}">
+                                        <f:convertNumber currencySymbol="€" groupingUsed="#{true}" maxFractionDigits="2" type="currency"/>
+                                    </h:outputText>        
+                                </p:column>
+
+                            </p:dataTable>
                         </p:panel>
-                        
+
                         <h:panelGrid columns="1">
-                        <p:commandButton id="back" value="Retour" action="#{compteBean.list()}"/> 
+                            <p:commandButton id="back" value="Retour" action="#{compteBean.list()}"/> 
                         </h:panelGrid>
-                        
+
                     </h:form>
                 </f:view>
 

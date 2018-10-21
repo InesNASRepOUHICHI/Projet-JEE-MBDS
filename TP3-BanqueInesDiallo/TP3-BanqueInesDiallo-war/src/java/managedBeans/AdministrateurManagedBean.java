@@ -5,11 +5,7 @@
  */
 package managedBeans;
 
-
-
-import edu.unice.banque.entities.Administrateur;
 import edu.unice.banque.entities.Conseiller;
-import edu.unice.banque.entities.Personnee;
 import edu.unice.banque.session.GestionnaireAdministrateurBean;
 import edu.unice.banque.session.GestionnaireConseillerBean;
 import java.io.Serializable;
@@ -32,30 +28,23 @@ public class AdministrateurManagedBean implements Serializable {
     @EJB
     private GestionnaireAdministrateurBean administrateurManager;
 
-  
-     public List<Conseiller> getConseillers() {  
-    // Personnee p = UserLoginManagedBean.personneConnectee;
-     //Administrateur a = administrateurManager. findAdministrateurByID(p.getId());
-     return administrateurManager.getAllConseiller();
-    }  
-   
-        public String supprimerConseiller(Conseiller conseiller) {
-       administrateurManager.supprimerConseiller(conseiller);
-       
+    public List<Conseiller> getConseillers() {
+        return administrateurManager.getAllConseiller();
+    }
+
+    public String supprimerConseiller(Conseiller conseiller) {
+        administrateurManager.supprimerConseiller(conseiller);
+
         return "listeConseillers?faces-redirect=true";
     }
-        
-   public String showDetails(int id) {
+
+    public String showDetails(int id) {
         return "detailsConseiller?id=" + id;
     }
-   
+
     public AdministrateurManagedBean() {
     }
 
-  /*  public Conseiller showDetails(Long id) {  
-       return  conseillerManager.findConseillerByID(id);
-    }
-*/
     public GestionnaireConseillerBean getConseillerManager() {
         return conseillerManager;
     }
@@ -64,7 +53,4 @@ public class AdministrateurManagedBean implements Serializable {
         this.conseillerManager = conseillerManager;
     }
 
-   
-    
-    
 }
