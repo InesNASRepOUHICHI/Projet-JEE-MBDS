@@ -2,7 +2,7 @@
 
 
 Projet réalisé par **Ines NASR** et **Hawaou  DIALLO** pour l'unité d'enseignement **"Serveurs d’applications et java avancé (EJB,JPA,JMS...)"** du master 2 MBDS 2018-2019.
-Ce projet est encadré par **Mr Michel BUFFA**
+Ce projet est encadré par **Mr Amosse Edouard**
 
 **Sujet :** [réaliser  une  application  en  J2EE  de  gestion  de  comptes  bancaires](https://www.dropbox.com/sh/3ipivnnedcvdpya/AAAz22U5GdXXDqvX9vDdIPi1a?dl=0&preview=mini_projet.pdf)
 
