@@ -19,6 +19,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -41,10 +43,14 @@ public class Compte implements Serializable {
     private Long numeroCompte;
     private double solde;
 
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY, mappedBy = "listComptes")
     private List<Client> listeClientsProprietaires = new ArrayList<Client>();
 
-    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @JoinTable(name = "compte_operation",
+            joinColumns = @JoinColumn(name = "compte_id"),
+            inverseJoinColumns = @JoinColumn(name = "operation_id")
+    )
     private List<Operation> listeOperations = new ArrayList<Operation>();
 
     public Compte() {
@@ -113,8 +119,6 @@ public class Compte implements Serializable {
     public String toString() {
         return "Compte{" + "id=" + id + ", numeroCompte=" + numeroCompte + ", solde=" + solde + ", listeClientsProprietaires=" + listeClientsProprietaires + ", listeOperations=" + listeOperations + '}';
     }
-
-   
 
     public Compte(Long numeroCompte, double solde) {
         this.numeroCompte = numeroCompte;

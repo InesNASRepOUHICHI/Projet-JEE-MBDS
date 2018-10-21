@@ -13,23 +13,22 @@ import javax.persistence.Entity;
  *
  * @author deptinfo
  */
-@Entity 
+@Entity
 @DiscriminatorValue("COMPTE_COURANT")
 public class CompteCourant extends Compte implements Serializable {
+
     private double montantPret;
     private double montantDecouvert;
+
     public CompteCourant() {
-        
+
     }
 
-    
-    
     public CompteCourant(double montantPret, double montantDecouvert) {
         this.montantPret = montantPret;
         this.montantDecouvert = montantDecouvert;
     }
 
-    
     public double getMontantPret() {
         return montantPret;
     }
@@ -46,9 +45,4 @@ public class CompteCourant extends Compte implements Serializable {
         this.montantDecouvert = montantDecouvert;
     }
 
-   
-    
-    
 }
-
-  

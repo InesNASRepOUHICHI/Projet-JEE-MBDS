@@ -57,9 +57,9 @@ public class CompteMBean implements Serializable {
     public List<Compte> getComptesClient() {
         Personnee p = UserLoginManagedBean.personneConnectee;
         Client c = clientManager.findClientByEmail(p.getEmail());
-        List<Compte> comptesClientConnecte =  c.getListComptes();
+        //List<Compte> comptesClientConnecte =  c.getListComptes();
         
-        return comptesClientConnecte;
+        return compteManager.getComptes();
     }
 
     public String addCompte() {
