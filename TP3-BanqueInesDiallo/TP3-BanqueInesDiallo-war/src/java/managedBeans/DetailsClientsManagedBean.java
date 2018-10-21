@@ -18,7 +18,7 @@ import javax.faces.view.ViewScoped;
  */
 @Named(value = "detailsClients")
 @ViewScoped
-public class DetailsClientsMBean implements Serializable{
+public class DetailsClientsManagedBean implements Serializable{
     private Long id;
     private Client client;
 
@@ -30,12 +30,9 @@ public class DetailsClientsMBean implements Serializable{
      */
     
     
-    public DetailsClientsMBean() {
+    public DetailsClientsManagedBean() {
     }
     
-    public Client getDetail(){
-        return client;
-    }
 
     public Long getId() {
         return id;

@@ -10,8 +10,11 @@ import edu.unice.banque.entities.Client;
 import edu.unice.banque.entities.Compte;
 import edu.unice.banque.entities.CompteCourant;
 import edu.unice.banque.entities.Conseiller;
+import edu.unice.banque.entities.Operation;
 import edu.unice.banque.entities.Role;
+import edu.unice.banque.entities.TypeOperation;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -43,8 +46,6 @@ public class InitDbBean {
         creerClientDeTest();
         creerAministrateurs();
         creerConseillers();
-        
-        
 
     }
 
@@ -58,23 +59,28 @@ public class InitDbBean {
         clientProprietaire.setRole(Role.CLIENT);
         clientProprietaire.setEmail("ines@gmail.com");
         clientProprietaire.setPassword("ines");
-        
+
         Conseiller conseiller = new Conseiller("DECHAMPS", "Maxime", "0492626262", "Nice CARRAS", "Homme", "maxime@gmail.com", "maxime", Role.CONSEILLER);
         conseiller.setAdministrateur(new Administrateur("admin", "admin", "04432315", "Magnan", "Femme", "admin", "admin", Role.ADMIN));
         clientProprietaire.setConseiller(conseiller);
-        
-        
-        
+
         Compte compte = new CompteCourant(0, 500);
         compte.setNumeroCompte(10001L);
         compte.setSolde(50000);
+
+        List<Operation> operations = new ArrayList<Operation>();
+        operations.add(new Operation(TypeOperation.RETRAIT, new Date(), 110));
+        operations.add(new Operation(TypeOperation.VERSEMENT, new Date(), 120));
+        operations.add(new Operation(TypeOperation.VIREMENT, new Date(), 130));
+        operations.add(new Operation(TypeOperation.RETRAIT, new Date(), 140));
+
+        compte.setListeOperations(operations);
         List<Compte> comptes = new ArrayList<Compte>();
         comptes.add(compte);
-        
+
         clientProprietaire.setListComptes(comptes);
 
         gestionnaireClientBean.addClient(clientProprietaire);
-        
 
     }
 
@@ -85,7 +91,7 @@ public class InitDbBean {
         gestionnaireAdministrateurBean.addAdministrateur(new Administrateur("Diallo", "Hasso", "04432316", "Arenas", "Homme", "hasso@gmail.com", "diallo", Role.ADMIN));
 
     }
-    
+
     public void creerConseillers() {
         gestionnaireConseillerBean.addConseiller(new Conseiller("Perez", "Mari", "04438314", "Thier", "Femme", "perez@gmail.com", "perez", Role.CONSEILLER));
         gestionnaireConseillerBean.addConseiller(new Conseiller("Ezaher", "Fatima", "04432399", "Moulin", "Homme", "fatima@gmail.com", "fatima", Role.CONSEILLER));

@@ -25,10 +25,10 @@ import java.util.ArrayList;
  */
 @Named(value = "compteMBean")
 @ViewScoped
-public class CompteMBean implements Serializable {
+public class CompteManagedBean implements Serializable {
 
     /**
-     * Creates a new instance of CompteMBean
+     * Creates a new instance of CompteManagedBean
      */
     @EJB
     private GestionnaireCompteBean compteManager;
@@ -43,7 +43,7 @@ public class CompteMBean implements Serializable {
     private int montant = 0;
     private String typeDeCompte = "CC";
 
-    public CompteMBean() {
+    public CompteManagedBean() {
         client = new Client();
         compte = new Compte();
         compteEpargne = new CompteEpargne();
@@ -57,9 +57,7 @@ public class CompteMBean implements Serializable {
     public List<Compte> getComptesClient() {
         Personnee p = UserLoginManagedBean.personneConnectee;
         Client c = clientManager.findClientByEmail(p.getEmail());
-        //List<Compte> comptesClientConnecte =  c.getListComptes();
-        
-        return compteManager.getComptes();
+        return c.getListComptes();
     }
 
     public String addCompte() {
@@ -105,9 +103,6 @@ public class CompteMBean implements Serializable {
         return "listeComptes";
     }
 
-    public String showDetails(long compteId) {
-        return "CompteDetails?id=" + compteId;
-    }
 
     public Compte getCompte() {
         return compte;

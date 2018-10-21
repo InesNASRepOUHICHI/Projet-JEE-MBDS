@@ -19,28 +19,25 @@
                 <h1><h:outputText value="Create/Edit"/></h1>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="Conseiller:" for="conseiller" />
-                    <h:selectOneMenu id="conseiller" value="#{detailsClients.detail.conseiller}" title="Conseiller" >
-                        <!-- TODO: update below reference to list of available items-->
-                        <f:selectItems value="#{fixme}"/>
-                    </h:selectOneMenu>
+                    <h:inputText id="id" value="#{detailsClients.client.conseiller.nom}" title="Id" readonly="true" />
                     <h:outputLabel value="Id:" for="id" />
-                    <h:inputText id="id" value="#{detailsClients.detail.id}" title="Id" />
+                    <h:inputText id="id" value="#{detailsClients.client.id}" title="Id" readonly="true" />
                     <h:outputLabel value="Nom:" for="nom" />
-                    <h:inputText id="nom" value="#{detailsClients.detail.nom}" title="Nom" />
+                    <h:inputText id="nom" value="#{detailsClients.client.nom}" title="Nom" />
                     <h:outputLabel value="Prenom:" for="prenom" />
-                    <h:inputText id="prenom" value="#{detailsClients.detail.prenom}" title="Prenom" />
+                    <h:inputText id="prenom" value="#{detailsClients.client.prenom}" title="Prenom" />
                     <h:outputLabel value="NumeroTelephone:" for="numeroTelephone" />
                     <h:inputText id="numeroTelephone" value="#{detailsClients.detail.numeroTelephone}" title="NumeroTelephone" />
                     <h:outputLabel value="Adresse:" for="adresse" />
-                    <h:inputText id="adresse" value="#{detailsClients.detail.adresse}" title="Adresse" />
+                    <h:inputText id="adresse" value="#{detailsClients.client.adresse}" title="Adresse" />
                     <h:outputLabel value="Sexe:" for="sexe" />
-                    <h:inputText id="sexe" value="#{detailsClients.detail.sexe}" title="Sexe" />
+                    <h:inputText id="sexe" value="#{detailsClients.client.sexe}" title="Sexe" />
                     <h:outputLabel value="Email:" for="email" />
-                    <h:inputText id="email" value="#{detailsClients.detail.email}" title="Email" />
+                    <h:inputText id="email" value="#{detailsClients.client.email}" title="Email" />
                     <h:outputLabel value="Password:" for="password" />
-                    <h:inputSecret  id="password" value="#{detailsClients.detail.password}" title="Password" />
+                    <h:inputSecret  id="password" value="#{detailsClients.client.password}" title="Password" />
                     <h:outputLabel value="Role:" for="role" />
-                    <h:inputText id="role" value="#{detailsClients.detail.role}" title="Role" />
+                    <h:inputText id="role" value="#{detailsClients.client.role}" title="Role" />
                     <h:commandButton id="back" value="Back" action="#{detailsClients.list}"/>  
                     <h:commandButton id="update" value="Update" action="#{detailsClients.update}"/>
                 </h:panelGrid>

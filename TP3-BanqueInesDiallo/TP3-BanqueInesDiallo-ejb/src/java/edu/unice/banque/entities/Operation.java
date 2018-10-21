@@ -33,6 +33,14 @@ public class Operation implements Serializable {
     public Operation() {
     }
 
+    public Operation(TypeOperation type, Date date, double montant) {
+        this.type = type;
+        this.date = date;
+        this.montant = montant;
+    }
+    
+    
+
     public Long getId() {
         return id;
     }

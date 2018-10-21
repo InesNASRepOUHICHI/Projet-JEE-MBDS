@@ -19,14 +19,14 @@ import javax.faces.view.ViewScoped;
  */
 @Named(value = "compteDetailsMBean")
 @ViewScoped
-public class CompteDetailsMBean implements Serializable{
+public class DetailsCompteManagedBean implements Serializable{
 
     @EJB
   private GestionnaireCompteBean gestionnaireDeCompteBancaire;
   private Long id;  
   private Compte compte; 
     /**
-     * Creates a new instance of CompteDetailsMBean
+     * Creates a new instance of DetailsCompteManagedBean
      */
   
   
@@ -56,7 +56,7 @@ public class CompteDetailsMBean implements Serializable{
     this.compte = gestionnaireDeCompteBancaire.getCompte(id);  
   }  
   
-    public CompteDetailsMBean() {
+    public DetailsCompteManagedBean() {
     }
 
     public GestionnaireCompteBean getGestionnaireDeCompteBancaire() {

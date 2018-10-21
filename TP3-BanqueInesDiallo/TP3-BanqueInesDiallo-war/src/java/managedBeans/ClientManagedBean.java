@@ -20,13 +20,13 @@ import javax.faces.view.ViewScoped;
  */
 @Named(value = "clientMBean")
 @ViewScoped
-public class ClientMBean implements Serializable {
+public class ClientManagedBean implements Serializable {
 
     @EJB
     private GestionnaireClientBean clientManager;
      private Client client ;
     /**
-     * Creates a new instance of ClientMBean
+     * Creates a new instance of ClientManagedBean
      */
      public List<Client> getClients() {  
          return clientManager.getAllClient();
@@ -37,7 +37,7 @@ public class ClientMBean implements Serializable {
      }
     
    
-    public ClientMBean() {
+    public ClientManagedBean() {
     }
 
   

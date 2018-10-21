@@ -47,9 +47,6 @@ public class GestionnaireClientBean {
         Query query = em.createQuery(Query_Select_Client_By_Email);
         query.setParameter("email", email);
         try {
-            System.out.println("INES-DEBUG");
-            System.out.println(query.getSingleResult());
-            System.out.println("INES-DEBUG-END");
             return (Client) query.getSingleResult();
         } catch (NoResultException e) {
             System.out.println(e.toString());
@@ -79,7 +76,6 @@ public class GestionnaireClientBean {
     }
 
     public String showDetails(int id) {
-        System.out.println("dans show");
         return "detailsClient?id=" + id;
     }
 

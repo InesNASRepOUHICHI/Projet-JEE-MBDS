@@ -56,6 +56,16 @@ public class Compte implements Serializable {
     public Compte() {
     }
 
+    public List<Operation> getListeOperations() {
+        return listeOperations;
+    }
+
+    public void setListeOperations(List<Operation> listeOperations) {
+        this.listeOperations = listeOperations;
+    }
+
+    
+    
     public double getSolde() {
         return solde;
     }
