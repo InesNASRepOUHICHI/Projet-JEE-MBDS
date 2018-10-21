@@ -45,6 +45,14 @@ Ce  mini  projet  s’inscrit  dans  la  suite  du  TP3.
  - Utiliser  Primefaces  pour  la  création  des  interfaces:  exploitation  les  fonctions  de  filtrages,  d’ordonnancements, d’exports  en csv
  - Utiliser  deux  types  de  session  beans: **Singleton** et **Stateless**.
  - Utiliser  deux  types  de  scope  dans  les  backend  bean: **ViewScoped** et **RequestScoped**
+- Dans la JPA, nous avons utilisé deux méthodes d’héritage pour la création des entités filles :
+     **TABLE_PER_CLASSE :** pour les entités Client, Administrateur et Conseiller.
+     **SINGLE_TABLE :**  pour les entités CompteCourant et CompteEpargne.
+- 3 espaces web sont accessibles selon le rôle de l’utilisateur connecté :
+       Espace Client.
+       Espace Conseiller.
+       Espace Administrateur.
+
 
 
 **Comptes créés par défaut:**
@@ -74,7 +82,13 @@ Pour la réalisation de notre projet nous avons implémenté trois types de rôl
  - Exécuter le projet;
  - Tester les différentes fonctionnalités (Vous avez 3 comptes de départ décrits ci-dessus)
 
+**Diagrame de classe:**
 
+![Ressource Diagrame de classe](/Docs/Diagramme_De_Classe.jpg)
+ 
+ Ce diagramme illustre les liaisons entre les différentes entités implémentées dans l’EJB. Les énumérations sont utilisées :
+- Par la classe Personne pour différencier les différents types d’utilisateurs (Enumération Role).
+- Par la classe Operation pour différencier les différents types d’opérations (Enumération TypeOperation).
 
  
  
