@@ -36,7 +36,7 @@ public class GestionnaireClientBean {
     }
 
     public void addClient(Client client) {
-        em.persist(client);
+        em.merge(client);
     }
 
     public Client findClientByID(Long id) {

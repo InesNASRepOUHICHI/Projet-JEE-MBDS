@@ -44,6 +44,8 @@ public class CompteManagedBean implements Serializable {
     private Compte compte;
     private CompteEpargne compteEpargne;
     private CompteCourant compteCourant;
+    
+    private String message = "";
 
     private Operation operation = new Operation();
     private String typeDeCompte = "CC";
@@ -62,6 +64,16 @@ public class CompteManagedBean implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    
+    
 
     public List<Compte> getComptes() {
         return compteManager.getComptes();
@@ -83,15 +95,16 @@ public class CompteManagedBean implements Serializable {
         compteACreer.setNumeroCompte(compte.getNumeroCompte());
         compteACreer.setSolde(compte.getSolde());
 
-        List<Client> clientsProprietaires = new ArrayList<Client>();
         Conseiller conseiller = (Conseiller) UserLoginManagedBean.personneConnectee;
 
         client.setRole(Role.CLIENT); 
         client.setConseiller(conseiller);
-        clientsProprietaires.add(client);
-        compteACreer.setListeClientsProprietaires(clientsProprietaires);
+        
+        List<Compte> listeComptesClient = new ArrayList<Compte>();
+        listeComptesClient.add(compte);
+        client.setListComptes(listeComptesClient);
 
-        compteManager.createCompte(compteACreer);
+        clientManager.addClient(client);
         
         return "listeClients";
     }
@@ -177,6 +190,7 @@ public class CompteManagedBean implements Serializable {
     }
     
     public String creerOperation(){
+        message ="Opération en cours...";
         operation.setDate(new Date());
         compte.getListeOperations().add(operation);
         double nouveauSolde =0;
@@ -184,8 +198,17 @@ public class CompteManagedBean implements Serializable {
             nouveauSolde = compte.getSolde() + operation.getMontant();
         } else if (operation.getType().toString().equals("RETRAIT")){
             nouveauSolde = compte.getSolde() - operation.getMontant();
+            
+            if (nouveauSolde < 0){
+                message ="Solde insuffisant";
+                return "nouvelleOperation?id="+id;
+            }
         } else if (operation.getType().toString().equals("VIREMENT")){
             nouveauSolde = compte.getSolde() - operation.getMontant();
+            if (nouveauSolde < 0){
+                message ="Solde insuffisant";
+                return "nouvelleOperation?id="+id;
+            }
         }
         compte.setSolde(nouveauSolde);
         compteManager.updateCompte(compte);
